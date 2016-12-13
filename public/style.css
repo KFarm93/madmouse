@@ -1,0 +1,18 @@
+#titleHeader {
+  font-size: 3em;
+  text-align: center;
+}
+
+#dpad {
+  margin-bottom: 75px;
+}
+
+#mouse {
+  position: absolute;
+  /*move by 40px for left/right, starting point is 58px*/
+  left: 60px;
+  /*move by 40px for up/down, staring point is 170px%*/
+  top: 165px;
+  height: 33px;
+  width: 33px;
+}
