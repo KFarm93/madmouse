@@ -11,8 +11,9 @@
   <body ng-app="madmouse" ng-controller="MainController" ng-keydown="key($event)">
     <h1 id="titleHeader">MadMouse</h1>
     <div class="boardDiv">
-      <img src="images/maze1.jpg">
+      <canvas id="canvas" width="700" height="700"></canvas>
       <img src="images/mouse_clipart.png" id="mouse">
+      <img src="images/cheese.png" id="cheese">
     </div>
   </body>
   <script src="jquery-3.1.1.js"></script>
