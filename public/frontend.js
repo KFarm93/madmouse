@@ -5,65 +5,53 @@ var ctx = canvas.getContext('2d');
 
 ctx.strokeStyle = 'black';
 ctx.lineWidth = 5;
-
-// Maze
 ctx.beginPath();
-//
-// Debugger grid (14X14)
-// // vertical
+
+// Default grid (14X14)
+
+
+// vertical
 // ctx.moveTo(50, 0);
 // ctx.lineTo(50, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(100, 0);
 // ctx.lineTo(100, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(150, 0);
 // ctx.lineTo(150, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(200, 0);
 // ctx.lineTo(200, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(250, 0);
 // ctx.lineTo(250, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(300, 0);
 // ctx.lineTo(300, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(350, 0);
 // ctx.lineTo(350, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(400, 0);
 // ctx.lineTo(400, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(450, 0);
 // ctx.lineTo(450, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(500, 0);
 // ctx.lineTo(500, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(550, 0);
 // ctx.lineTo(550, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(600, 0);
 // ctx.lineTo(600, 700);
-// ctx.closePath();
 // ctx.stroke();
 // ctx.moveTo(650, 0);
 // ctx.lineTo(650, 700);
-// ctx.closePath();
 //
-// // horizontal
+//
+// horizontal
 // ctx.stroke();
 // ctx.moveTo(0, 50);
 // ctx.lineTo(700, 50);
@@ -117,6 +105,118 @@ ctx.beginPath();
 // ctx.lineTo(700, 650);
 // ctx.closePath();
 // ctx.stroke();
+
+
+//-----------------------------------------------------------
+
+
+// Maze 1
+
+// vertical
+// <Column 1>
+ctx.moveTo(50, 100);
+ctx.lineTo(50, 450);
+ctx.stroke();
+// </Column 1>
+
+
+// <Column 2>
+ctx.moveTo(100, 0);
+ctx.lineTo(100, 50);
+ctx.stroke();
+ctx.moveTo(100, 200);
+ctx.lineTo(100, 400);
+ctx.stroke();
+ctx.moveTo(100, 450);
+ctx.lineTo(100, 650);
+ctx.stroke();
+// </Column 2>
+
+// <Column 3>
+ctx.moveTo(150, 50);
+ctx.lineTo(150, 200);
+ctx.stroke();
+ctx.moveTo(150, 350);
+ctx.lineTo(150, 450);
+ctx.stroke();
+// </Column 3>
+
+// <Column 4>
+ctx.moveTo(200, 0);
+ctx.lineTo(200, 100);
+ctx.stroke();
+ctx.moveTo(200, 200);
+ctx.lineTo(200, 250);
+ctx.stroke();
+ctx.moveTo(200, 400);
+ctx.lineTo(200, 500);
+// </Column 4>
+
+
+//-----------------------------------------------------------
+
+
+// horizontal
+// <Row A>
+ctx.moveTo(50, 50);
+ctx.lineTo(100, 50);
+ctx.stroke();
+// </Row A>
+
+// <Row B>
+ctx.moveTo(100, 100);
+ctx.lineTo(150, 100);
+ctx.stroke();
+// </Row B>
+
+// <Row C>
+ctx.moveTo(50, 150);
+ctx.lineTo(100, 150);
+ctx.stroke();
+// </Row C>
+
+// <Row E>
+ctx.moveTo(100, 250);
+ctx.lineTo(150, 250);
+// </Row E>
+
+// <Row G>
+ctx.moveTo(100, 350);
+ctx.lineTo(150, 350);
+ctx.stroke();
+// </Row G>
+
+// <Row I>
+ctx.moveTo(50, 450);
+ctx.lineTo(150, 450);
+ctx.stroke();
+// </Row I>
+
+// <Row J>
+ctx.moveTo(0, 500);
+ctx.lineTo(50, 500);
+ctx.stroke();
+// </Rox J>
+
+// <Row K>
+ctx.moveTo(50, 550);
+ctx.lineTo(100, 550);
+ctx.stroke();
+// </Row K>
+
+// <Row L>
+ctx.moveTo(0, 600);
+ctx.lineTo(50, 600);
+ctx.stroke();
+// </Row L>
+
+// <Row M>
+ctx.moveTo(50, 650);
+ctx.lineTo(100, 650);
+ctx.stroke();
+// </Row M>
+
+//-----------------------------------------------------------
 
 
 socket.on('replicate', function(data) {
