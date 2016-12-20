@@ -8,12 +8,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-  <body ng-app="madmouse" ng-controller="MainController" ng-keydown="key($event)">
-    <h1 id="titleHeader">MadMouse</h1>
+  <body ng-app="madmouse" ng-controller="MainController" ng-keydown="key($event)" onload="load()">
     <div class="boardDiv">
       <canvas id="canvas" width="700" height="700"></canvas>
-      <img src="images/mouse_down.png" id="mouse">
-      <img src="images/cheese.png" id="cheese">
     </div>
   </body>
   <script src="jquery-3.1.1.js"></script>
