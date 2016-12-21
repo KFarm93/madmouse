@@ -7,6 +7,8 @@ var y = 20;
 var src = "images/mouse_down.png";
 var coordX = 0;
 var coordY = 0;
+var isCounting = false;
+
 
 app.use(express.static('public'));
 
@@ -50,6 +52,12 @@ io.on('connection', function(socket){
       }
     }
     io.emit('replicate', [x, y, src, coordX, coordY]);
+  });
+  socket.on('beginTimer',function(data) {
+    var isCounting = true;
+    setTimeout(function() {
+      io.emit('timeUp');
+    }, 6000);
   });
 });
 

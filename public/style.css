@@ -4,9 +4,17 @@ body {
   background-repeat: no-repeat;
 }
 
+.boardDiv {
+  float: left;
+}
+
 #titleHeader {
-  font-size: 2em;
-  text-align: center;
+  position: absolute;
+  top: .2%;
+  left: 38.5%;
+  font-size: 5em;
+  font-family: 'Bangers', cursive;
+  margin: 0;
 }
 
 #dpad {
@@ -34,4 +42,30 @@ body {
   height: 30px;
   width: 30px;
   z-index: 1;
+}
+
+.timer {
+  position: absolute;
+  left: 38%;
+  top: 15%;
+}
+
+.startButton {
+  position: absolute;
+  left: 38%;
+  top: 30%;
+  width: 17%;
+  height: 5%;
+  font-size: 2.5em;
+  font-family: 'Bangers', cursive;
+}
+
+.resetButton {
+  position: absolute;
+  left: 38%;
+  top: 40%;
+  width: 17%;
+  height: 5%;
+  font-size: 2.5em;
+  font-family: 'Bangers', cursive;
 }

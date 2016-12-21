@@ -10,13 +10,19 @@ mouse.src = 'images/mouse_down.png';
 mouse.id = 'mouse';
 coordy = 0;
 coordx = 0;
+var frontClock;
+var isCounting = false;
 
-
-function load() {
+$(document).ready(function() {
   $('body').append(cheese);
   $('body').append(mouse);
-}
-
+  // Instantiate the timer
+  frontClock = new FlipClock($('.timer'), 5, {
+    clockFace: 'MinuteCounter',
+    autoStart: false,
+    countdown: true
+  });
+});
 
 
 
@@ -468,7 +474,7 @@ ctx.stroke();
 
 
 var maze1 = [ // Row A
-              [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: true, down: true, left: false, name: 'A2'}, {up: true, right: false, down: false, left: true, name: 'A3'}, {up: true, right: true, down: false, left: false, name: 'A4'}, {up: true, right: false, down: false, left: true, name: 'A5'}, {up: true, right: false, down: true, left: false, name: 'A6'}, {up: true, right: false, down: true, left: false, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: true, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: true, name: 'A10'}, {up: true, right: false, down: true, left: false, name: 'A11'}, {up: true, right: false, down: true, left: false, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: false, down: true, left: false, name: 'A14'}],
+              [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: true, down: true, left: false, name: 'A2'}, {up: true, right: false, down: false, left: true, name: 'A3'}, {up: true, right: true, down: false, left: false, name: 'A4'}, {up: true, right: false, down: false, left: true, name: 'A5'}, {up: true, right: false, down: true, left: false, name: 'A6'}, {up: true, right: false, down: true, left: false, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: true, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: true, name: 'A10'}, {up: true, right: false, down: true, left: false, name: 'A11'}, {up: true, right: false, down: true, left: false, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: true, left: false, name: 'A14'}],
               // Row B
               [{up: false, right: false, down: false, left: true, name: 'B1'}, {up: true, right: false, down: false, left: false, name: 'B2'}, {up: false, right: true, down: true, left: false, name: 'B3'}, {up: false, right: true, down: false, left: true, name: 'B4'}, {up: false, right: false, down: true, left: true, name: 'B5'}, {up: true, right: true, down: false, left: false, name: 'B6'}, {up: true, right: false, down: false, left: true, name: 'B7'}, {up: true, right: true, down: false, left: false, name: 'B8'}, {up: false, right: true, down: false, left: true, name: 'B9'}, {up: false, right: false, down: true, left: true, name: 'B10'}, {up: true, right: false, down: true, left: false, name: 'B11'}, {up: true, right: true, down: false, left: false, name: 'B12'}, {up: true, right: false, down: false, left: true, name: 'B13'}, {up: true, right: true, down: false, left: false, name: 'B14'}],
               // Row C
@@ -486,7 +492,7 @@ var maze1 = [ // Row A
               // Row I
               [{up: false, right: true, down: false, left: true, name: 'I1'}, {up: false, right: false, down: true, left: true, name: 'I2'}, {up: false, right: true, down: true, left: false, name: 'I3'}, {up: false, right: true, down: false, left: true, name: 'I4'}, {up: false, right: true, down: true, left: true, name: 'I5'}, {up: true, right: false, down: false, left: true, name: 'I6'}, {up: false, right: true, down: false, left: false, name: 'I7'}, {up: true, right: false, down: false, left: true, name: 'I8'}, {up: false, right: true, down: true, left: false, name: 'I9'}, {up: false, right: false, down: true, left: true, name: 'I10'}, {up: true, right: false, down: true, left: false, name: 'I11'}, {up: true, right: false, down: true, left: false, name: 'I12'}, {up: true, right: true, down: false, left: false, name: 'I13'}, {up: false, right: true, down: false, left: true, name: 'I14'}],
               // Row J
-              [{up: false, right: false, down: true, left: true, name: 'J1'}, {up: true, right: true, down: false, left: false, name: 'J2'}, {up: true, right: false, down: false, left: true, name: 'J3'}, {up: false, right: true, down: true, left: false, name: 'J4'}, {up: true, right: false, down: false, left: true, name: 'J5'}, {up: false, right: true, down: true, left: false, name: 'J6'}, {up: false, right: true, down: false, left: true, name: 'J7'}, {up: false, right: false, down: true, left: true, name: 'J8'}, {up: true, right: false, down: false, left: false, name: 'J9'}, {up: true, right: false, down: false, left: false, name: 'J10'}, {up: true, right: false, down: true, left: false, name: 'J11'}, {up: true, right: false, down: true, left: false, name: 'J12'}, {up: false, right: true, down: true, left: false, name: 'J13'}, {up: false, right: true, down: true, left: true, name: 'J14'}],
+              [{up: false, right: false, down: true, left: true, name: 'J1'}, {up: true, right: true, down: false, left: false, name: 'J2'}, {up: true, right: false, down: false, left: true, name: 'J3'}, {up: false, right: true, down: true, left: false, name: 'J4'}, {up: true, right: false, down: false, left: true, name: 'J5'}, {up: false, right: true, down: true, left: false, name: 'J6'}, {up: false, right: true, down: false, left: true, name: 'J7'}, {up: false, right: false, down: true, left: true, name: 'J8'}, {up: true, right: true, down: false, left: false, name: 'J9'}, {up: true, right: false, down: false, left: true, name: 'J10'}, {up: true, right: false, down: true, left: false, name: 'J11'}, {up: true, right: false, down: true, left: false, name: 'J12'}, {up: false, right: true, down: true, left: false, name: 'J13'}, {up: false, right: true, down: true, left: true, name: 'J14'}],
               // Row K
               [{up: true, right: false, down: false, left: true, name: 'K1'}, {up: false, right: true, down: true, left: false, name: 'K2'}, {up: false, right: false, down: false, left: true, name: 'K3'}, {up: true, right: false, down: true, left: false, name: 'K4'}, {up: false, right: true, down: true, left: false, name: 'K5'}, {up: true, right: false, down: false, left: true, name: 'K6'}, {up: false, right: true, down: true, left: false, name: 'K7'}, {up: true, right: false, down: true, left: true, name: 'K8'}, {up: false, right: false, down: true, left: false, name: 'K9'}, {up: false, right: true, down: false, left: false, name: 'K10'}, {up: true, right: false, down: false, left: true, name: 'K11'}, {up: true, right: false, down: true, left: false, name: 'K12'}, {up: true, right: false, down: true, left: false, name: 'K13'}, {up: true, right: true, down: false, left: false, name: 'K14'}],
               // Row L
@@ -514,50 +520,66 @@ socket.on('win', function() {
   console.log("win");
 });
 
+// socket.on('timeUp', function() {
+//   alert('Time\'s up!');
+// });
+
 angularApp.controller("MainController", function($scope) {
   $scope.key = function($event) {
-    if ($event.keyCode == 38 || $event.keyCode == 87) {
-        $event.preventDefault();
-        if (maze1[coordy][coordx].up === false) {
-          // coordy--;
-          socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
-        }
-        else {
-          console.log('blocked');
-        }
+    if ($scope.isCounting === true) {
+      if ($event.keyCode == 38 || $event.keyCode == 87) {
+          $event.preventDefault();
+          if (maze1[coordy][coordx].up === false) {
+            socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
+          }
+          else {
+            // blocked
+          }
 
+        }
+     else if ($event.keyCode == 39 || $event.keyCode == 68) {
+          $event.preventDefault();
+          if (maze1[coordy][coordx].right === false) {
+            socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
+          }
+          else {
+            // blocked
+          }
+        }
+      else if ($event.keyCode == 40 || $event.keyCode == 83) {
+          $event.preventDefault();
+          console.log(coordy);
+          if (maze1[coordy][coordx].down === false) {
+            socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
+          }
+          else {
+            // blocked
+          }
+        }
+      else if ($event.keyCode == 37 || $event.keyCode == 65) {
+          $event.preventDefault();
+          if (maze1[coordy][coordx].left === false) {
+            socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
+          }
+          else {
+            // blocked
+          }
+        }
       }
-   else if ($event.keyCode == 39 || $event.keyCode == 68) {
-        $event.preventDefault();
-        if (maze1[coordy][coordx].right === false) {
-          // coordx++;
-          socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
-        }
-        else {
-          console.log('blocked');
-        }
-      }
-    else if ($event.keyCode == 40 || $event.keyCode == 83) {
-        $event.preventDefault();
-        console.log(coordy);
-        if (maze1[coordy][coordx].down === false) {
-          // coordy++;
-          socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
-        }
-        else {
-          console.log('blocked');
-        }
-
-    }
-    else if ($event.keyCode == 37 || $event.keyCode == 65) {
-        $event.preventDefault();
-        if (maze1[coordy][coordx].left === false) {
-          socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
-          // coordx--;
-        }
-        else {
-          console.log('blocked');
-        }
-    }
+   };
+   $scope.startTimer = function() {
+     frontClock.start();
+     var time = frontClock.getTime().time;
+     $scope.isCounting = true;
+     socket.emit('beginTimer');
+   };
+   socket.on('timeUp', function() {
+     console.log('Time\'s up!');
+     $scope.isCounting = false;
+     $scope.resetShow = true;
+     $scope.$apply();
+   });
+   $scope.reset = function() {
+     $scope.resetShow = false;
    };
  });
