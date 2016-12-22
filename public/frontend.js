@@ -535,7 +535,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
             shock.play();
-            $scope.delay = true;
+            // $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -551,7 +551,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
             shock.play();
-            $scope.delay = true;
+            // $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -567,7 +567,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
             shock.play();
-            $scope.delay = true;
+            // $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -582,7 +582,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
             shock.play();
-            $scope.delay = true;
+            // $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -612,7 +612,7 @@ angularApp.controller("MainController", function($scope) {
      console.log('Time\'s up!');
      $scope.isCounting = false;
      $scope.resetShow = true;
-     frontClock.stop();
+     $scope.$apply();
    });
    $scope.reset = function() {
      socket.emit('reset');
@@ -624,12 +624,18 @@ angularApp.controller("MainController", function($scope) {
    socket.on('newGame', function() {
      $scope.resetShow = false;
      $scope.ready = true;
-     frontClock.setTime(121000);
+     frontClock.setTime(120);
+     coordx = 0;
+     coordy = 0;
+     $('#mouse').css({top: '20px', left: '20px'});
+     $('#mouse').attr('src', 'images/mouse_down.png');
+     $scope.$apply();
    });
    socket.on('win', function() {
      alert('You win!');
-     frontClock.stop();
      $scope.isCounting = false;
      $scope.resetShow = true;
+     frontClock.stop();
+     $scope.$apply();
    });
  });

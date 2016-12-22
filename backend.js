@@ -61,6 +61,10 @@ io.on('connection', function(socket){
     }, 121000);
   });
   socket.on('reset', function() {
+    coordX = 0;
+    coordY = 0;
+    x = 20;
+    y = 20;
     io.emit('newGame');
   });
   socket.on('winEvent', function() {
