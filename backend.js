@@ -54,10 +54,17 @@ io.on('connection', function(socket){
     io.emit('replicate', [x, y, src, coordX, coordY]);
   });
   socket.on('beginTimer',function(data) {
+    io.emit('start');
     var isCounting = true;
     setTimeout(function() {
       io.emit('timeUp');
-    }, 6000);
+    }, 121000);
+  });
+  socket.on('reset', function() {
+    io.emit('newGame');
+  });
+  socket.on('winEvent', function() {
+    io.emit('win');
   });
 });
 

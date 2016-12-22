@@ -12,12 +12,12 @@ coordy = 0;
 coordx = 0;
 var frontClock;
 var isCounting = false;
+var shock = new Audio("ESPARK1.wav");
 
 $(document).ready(function() {
   $('body').append(cheese);
   $('body').append(mouse);
-  // Instantiate the timer
-  frontClock = new FlipClock($('.timer'), 5, {
+  frontClock = new FlipClock($('.timer'), 120, {
     clockFace: 'MinuteCounter',
     autoStart: false,
     countdown: true
@@ -513,73 +513,123 @@ socket.on('replicate', function(data) {
   $('#mouse').attr('src', data[2]);
   coordx = data[3];
   coordy = data[4];
+  console.log("x:", data[3]);
+  console.log("y:", data[4]);
+  // Check win
+  if (coordx === 13 && coordy === 12) {
+    setTimeout(function() {
+      socket.emit('winEvent');
+    }, 500);
+  }
 });
 
-socket.on('win', function() {
-  alert('You win!');
-  console.log("win");
-});
 
-// socket.on('timeUp', function() {
-//   alert('Time\'s up!');
-// });
 
 angularApp.controller("MainController", function($scope) {
+  $scope.ready = true;
+  $scope.delay = false;
   $scope.key = function($event) {
-    if ($scope.isCounting === true) {
+    $event.preventDefault();
+    if ($scope.isCounting === true && $scope.delay === false) {
       if ($event.keyCode == 38 || $event.keyCode == 87) {
-          $event.preventDefault();
           if (maze1[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
+            shock.play();
+            $scope.delay = true;
+            setTimeout(function() {
+              $scope.delay = false;
+              console.log('delay');
+            }, 1000);
           }
           else {
             // blocked
           }
 
         }
-     else if ($event.keyCode == 39 || $event.keyCode == 68) {
+     else if ($event.keyCode == 39 || $event.keyCode == 68 && $scope.delay === false) {
           $event.preventDefault();
           if (maze1[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
+            shock.play();
+            $scope.delay = true;
+            setTimeout(function() {
+              $scope.delay = false;
+              console.log('delay');
+            }, 1000);
           }
           else {
             // blocked
           }
         }
-      else if ($event.keyCode == 40 || $event.keyCode == 83) {
+      else if ($event.keyCode == 40 || $event.keyCode == 83 && $scope.delay === false) {
           $event.preventDefault();
           console.log(coordy);
           if (maze1[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
+            shock.play();
+            $scope.delay = true;
+            setTimeout(function() {
+              $scope.delay = false;
+              console.log('delay');
+            }, 1000);
           }
           else {
             // blocked
           }
         }
-      else if ($event.keyCode == 37 || $event.keyCode == 65) {
+      else if ($event.keyCode == 37 || $event.keyCode == 65 && $scope.delay === false) {
           $event.preventDefault();
           if (maze1[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
+            shock.play();
+            $scope.delay = true;
+            setTimeout(function() {
+              $scope.delay = false;
+              console.log('delay');
+            }, 1000);
           }
           else {
             // blocked
           }
         }
       }
+      // $scope.delay = true;
+      // setTimeout(function() {
+      //   $scope.delay = false;
+      //   console.log('delay');
+      // }, 3000);
    };
    $scope.startTimer = function() {
-     frontClock.start();
-     var time = frontClock.getTime().time;
-     $scope.isCounting = true;
      socket.emit('beginTimer');
    };
+   socket.on('start', function() {
+     frontClock.start();
+     $scope.ready = false;
+     $scope.isCounting = true;
+     $scope.$apply();
+   });
    socket.on('timeUp', function() {
      console.log('Time\'s up!');
      $scope.isCounting = false;
      $scope.resetShow = true;
-     $scope.$apply();
+     frontClock.stop();
    });
    $scope.reset = function() {
-     $scope.resetShow = false;
+     socket.emit('reset');
    };
+   socket.on('delayOver', function() {
+     $scope.delay = false;
+     console.log("delay over");
+   });
+   socket.on('newGame', function() {
+     $scope.resetShow = false;
+     $scope.ready = true;
+     frontClock.setTime(121000);
+   });
+   socket.on('win', function() {
+     alert('You win!');
+     frontClock.stop();
+     $scope.isCounting = false;
+     $scope.resetShow = true;
+   });
  });
