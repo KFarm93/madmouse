@@ -18,6 +18,12 @@
     <div class="timer"></div>
     <button class="startButton" type="sumbit" ng-click="startTimer()" ng-show="ready">Start!</button>
     <button class="resetButton" type="submit" ng-click="reset()" ng-show="resetShow">New Game</button>
+    <div class="instructions">
+    <p>Arrow keys or WASD to move</p>
+    </div>
+    <div class="win" ng-show="resetShow">
+      <p>You win!</p>
+    </div>
   </body>
   <script src="jquery-3.1.1.js"></script>
   <script src="flipclock.min.js"></script>

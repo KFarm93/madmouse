@@ -632,7 +632,6 @@ angularApp.controller("MainController", function($scope) {
      $scope.$apply();
    });
    socket.on('win', function() {
-     alert('You win!');
      $scope.isCounting = false;
      $scope.resetShow = true;
      frontClock.stop();
