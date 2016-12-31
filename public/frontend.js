@@ -13,466 +13,24 @@ coordx = 0;
 var frontClock;
 var isCounting = false;
 var shock = new Audio("ESPARK1.wav");
+var time = 10;
 
 $(document).ready(function() {
   $('body').append(cheese);
   $('body').append(mouse);
-  frontClock = new FlipClock($('.timer'), 120, {
-    clockFace: 'MinuteCounter',
-    autoStart: false,
-    countdown: true
-  });
 });
-
 
 
 ctx.strokeStyle = 'black';
 ctx.lineWidth = 5;
 ctx.beginPath();
 
-// // Default grid (14X14)
-
-
-// // vertical
-// ctx.moveTo(50, 0);
-// ctx.lineTo(50, 700);
-// ctx.stroke();
-// ctx.moveTo(100, 0);
-// ctx.lineTo(100, 700);
-// ctx.stroke();
-// ctx.moveTo(150, 0);
-// ctx.lineTo(150, 700);
-// ctx.stroke();
-// ctx.moveTo(200, 0);
-// ctx.lineTo(200, 700);
-// ctx.stroke();
-// ctx.moveTo(250, 0);
-// ctx.lineTo(250, 700);
-// ctx.stroke();
-// ctx.moveTo(300, 0);
-// ctx.lineTo(300, 700);
-// ctx.stroke();
-// ctx.moveTo(350, 0);
-// ctx.lineTo(350, 700);
-// ctx.stroke();
-// ctx.moveTo(400, 0);
-// ctx.lineTo(400, 700);
-// ctx.stroke();
-// ctx.moveTo(450, 0);
-// ctx.lineTo(450, 700);
-// ctx.stroke();
-// ctx.moveTo(500, 0);
-// ctx.lineTo(500, 700);
-// ctx.stroke();
-// ctx.moveTo(550, 0);
-// ctx.lineTo(550, 700);
-// ctx.stroke();
-// ctx.moveTo(600, 0);
-// ctx.lineTo(600, 700);
-// ctx.stroke();
-// ctx.moveTo(650, 0);
-// ctx.lineTo(650, 700);
-//
-//
-// // horizontal
-// ctx.stroke();
-// ctx.moveTo(0, 50);
-// ctx.lineTo(700, 50);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 100);
-// ctx.lineTo(700, 100);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 150);
-// ctx.lineTo(700, 150);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 200);
-// ctx.lineTo(700, 200);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 250);
-// ctx.lineTo(700, 250);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 300);
-// ctx.lineTo(700, 300);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 350);
-// ctx.lineTo(700, 350);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 400);
-// ctx.lineTo(700, 400);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 450);
-// ctx.lineTo(700, 450);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 500);
-// ctx.lineTo(700, 500);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 550);
-// ctx.lineTo(700, 550);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 600);
-// ctx.lineTo(700, 600);
-// ctx.closePath();
-// ctx.stroke();
-// ctx.moveTo(0, 650);
-// ctx.lineTo(700, 650);
-// ctx.closePath();
-// ctx.stroke();
-
-
 
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 
 
-
-
-// Maze 1
-
-// vertical
-// <Column 1>
-ctx.moveTo(50, 100);
-ctx.lineTo(50, 350);
-ctx.stroke();
-ctx.moveTo(50, 400);
-ctx.lineTo(50, 450);
-ctx.stroke();
-// </Column 1>
-
-
-// <Column 2>
-ctx.moveTo(100, 0);
-ctx.lineTo(100, 50);
-ctx.stroke();
-ctx.moveTo(100, 200);
-ctx.lineTo(100, 400);
-ctx.stroke();
-ctx.moveTo(100, 450);
-ctx.lineTo(100, 650);
-ctx.stroke();
-// </Column 2>
-
-// <Column 3>
-ctx.moveTo(150, 50);
-ctx.lineTo(150, 200);
-ctx.stroke();
-ctx.moveTo(150, 350);
-ctx.lineTo(150, 450);
-ctx.stroke();
-// </Column 3>
-
-// <Column 4>
-ctx.moveTo(200, 0);
-ctx.lineTo(200, 100);
-ctx.stroke();
-ctx.moveTo(200, 200);
-ctx.lineTo(200, 250);
-ctx.stroke();
-ctx.moveTo(200, 400);
-ctx.lineTo(200, 500);
-ctx.stroke();
-ctx.moveTo(150, 550);
-ctx.lineTo(150, 650);
-ctx.stroke();
-// </Column 4>
-
-// <Column 5>
-ctx.moveTo(250, 250);
-ctx.lineTo(250, 450);
-ctx.stroke();
-ctx.moveTo(250, 500);
-ctx.lineTo(250, 550);
-ctx.stroke();
-// </Column 5>
-
-// <Column 6>
-ctx.moveTo(300, 50);
-ctx.lineTo(300, 100);
-ctx.stroke();
-ctx.moveTo(300, 200);
-ctx.lineTo(300, 350);
-ctx.stroke();
-ctx.moveTo(300, 450);
-ctx.lineTo(300, 500);
-ctx.stroke();
-ctx.moveTo(300, 550);
-ctx.lineTo(300, 650);
-ctx.stroke();
-// </Column 6>
-
-// <Column 7>
-ctx.moveTo(350, 100);
-ctx.lineTo(350, 150);
-ctx.stroke();
-ctx.moveTo(350, 250);
-ctx.lineTo(350, 300);
-ctx.stroke();
-ctx.moveTo(350, 350);
-ctx.lineTo(350, 550);
-ctx.stroke();
-ctx.moveTo(350, 650);
-ctx.lineTo(350, 700);
-ctx.stroke();
-// </Column 7>
-
-// <Column 8>
-ctx.moveTo(400, 50);
-ctx.lineTo(400, 150);
-ctx.stroke();
-ctx.moveTo(400, 200);
-ctx.lineTo(400, 250);
-ctx.stroke();
-ctx.moveTo(400, 600);
-ctx.lineTo(400, 650);
-ctx.stroke();
-// </Column 8>
-
-// <Column 9>
-ctx.moveTo(450, 0);
-ctx.lineTo(450, 100);
-ctx.stroke();
-ctx.moveTo(450, 150);
-ctx.lineTo(450, 300);
-ctx.stroke();
-ctx.moveTo(450, 350);
-ctx.lineTo(450, 500);
-ctx.stroke();
-ctx.moveTo(450, 600);
-ctx.lineTo(450, 700);
-ctx.stroke();
-// </Column 9>
-
-// <Column 10>
-ctx.moveTo(500, 150);
-ctx.lineTo(500, 200);
-ctx.stroke();
-ctx.moveTo(500, 250);
-ctx.lineTo(500, 300);
-ctx.stroke();
-ctx.moveTo(500, 350);
-ctx.lineTo(500, 400);
-ctx.stroke();
-ctx.moveTo(500, 500);
-ctx.lineTo(500, 650);
-ctx.stroke();
-// </Column 10>
-
-// <Column 11>
-ctx.moveTo(550, 200);
-ctx.lineTo(550, 250);
-ctx.stroke();
-ctx.moveTo(550, 550);
-ctx.lineTo(550, 650);
-ctx.stroke();
-// </Column 11>
-
-// <Column 12>
-ctx.moveTo(600, 50);
-ctx.lineTo(600, 100);
-ctx.stroke();
-ctx.moveTo(600, 250);
-ctx.lineTo(600, 300);
-ctx.stroke();
-ctx.moveTo(600, 650);
-ctx.lineTo(600, 700);
-ctx.stroke();
-// </Column 12>
-
-// <Column 13>
-ctx.moveTo(650, 100);
-ctx.lineTo(650, 250);
-ctx.stroke();
-ctx.moveTo(650, 300);
-ctx.lineTo(650, 500);
-ctx.stroke();
-ctx.moveTo(650, 600);
-ctx.lineTo(650, 650);
-ctx.stroke();
-// </Column 13>
-
-
-//--------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------
-
-
-// horizontal
-// <Row A>
-ctx.moveTo(50, 50);
-ctx.lineTo(100, 50);
-ctx.stroke();
-ctx.moveTo(250, 50);
-ctx.lineTo(400, 50);
-ctx.stroke();
-ctx.moveTo(500, 50);
-ctx.lineTo(700, 50);
-ctx.stroke();
-// </Row A>
-
-// <Row B>
-ctx.moveTo(100, 100);
-ctx.lineTo(150, 100);
-ctx.stroke();
-ctx.moveTo(200, 100);
-ctx.lineTo(250, 100);
-ctx.stroke();
-ctx.moveTo(450, 100);
-ctx.lineTo(550, 100);
-ctx.stroke();
-// </Row B>
-
-// <Row C>
-ctx.moveTo(50, 150);
-ctx.lineTo(100, 150);
-ctx.stroke();
-ctx.moveTo(150, 150);
-ctx.lineTo(450, 150);
-ctx.stroke();
-ctx.moveTo(500, 150);
-ctx.lineTo(600, 150);
-ctx.stroke();
-// </Row C>
-
-// <Row D>
-ctx.moveTo(150, 200);
-ctx.lineTo(400, 200);
-ctx.stroke();
-ctx.moveTo(550, 200);
-ctx.lineTo(650, 200);
-ctx.stroke();
-// </Row D>
-
-// <Row E>
-ctx.moveTo(100, 250);
-ctx.lineTo(150, 250);
-ctx.stroke();
-ctx.moveTo(650, 250);
-ctx.lineTo(700, 250);
-ctx.stroke();
-// </Row E>
-
-// <Row F>
-ctx.moveTo(150, 300);
-ctx.lineTo(250, 300);
-ctx.stroke();
-ctx.moveTo(350, 300);
-ctx.lineTo(450, 300);
-ctx.stroke();
-ctx.moveTo(500, 300);
-ctx.lineTo(650, 300);
-ctx.stroke();
-// </Row F>
-
-
-// <Row G>
-ctx.moveTo(100, 350);
-ctx.lineTo(250, 350);
-ctx.stroke();
-ctx.moveTo(350, 350);
-ctx.lineTo(450, 350);
-ctx.stroke();
-ctx.moveTo(500, 350);
-ctx.lineTo(600, 350);
-ctx.stroke();
-// </Row G>
-
-// <Row H>
-ctx.moveTo(250, 400);
-ctx.lineTo(300, 400);
-ctx.stroke();
-ctx.moveTo(350, 400);
-ctx.lineTo(400, 400);
-ctx.stroke();
-ctx.moveTo(500, 400);
-ctx.lineTo(650, 400);
-ctx.stroke();
-// </Row H>
-
-
-// <Row I>
-ctx.moveTo(50, 450);
-ctx.lineTo(150, 450);
-ctx.stroke();
-ctx.moveTo(200, 450);
-ctx.lineTo(250, 450);
-ctx.stroke();
-ctx.moveTo(400, 450);
-ctx.lineTo(600, 450);
-ctx.stroke();
-// </Row I>
-
-// <Row J>
-ctx.moveTo(0, 500);
-ctx.lineTo(50, 500);
-ctx.stroke();
-ctx.moveTo(150, 500);
-ctx.lineTo(200, 500);
-ctx.stroke();
-ctx.moveTo(250, 500);
-ctx.lineTo(300, 500);
-ctx.stroke();
-ctx.moveTo(350, 500);
-ctx.lineTo(400, 500);
-ctx.stroke();
-ctx.moveTo(500, 500);
-ctx.lineTo(700, 500);
-ctx.stroke();
-// </Rox J>
-
-// <Row K>
-ctx.moveTo(50, 550);
-ctx.lineTo(100, 550);
-ctx.stroke();
-ctx.moveTo(150, 550);
-ctx.lineTo(250, 550);
-ctx.stroke();
-ctx.moveTo(300, 550);
-ctx.lineTo(450, 550);
-ctx.stroke();
-ctx.moveTo(550, 550);
-ctx.lineTo(650, 550);
-ctx.stroke();
-// </Row K>
-
-// <Row L>
-ctx.moveTo(0, 600);
-ctx.lineTo(50, 600);
-ctx.stroke();
-ctx.moveTo(200, 600);
-ctx.lineTo(450, 600);
-ctx.stroke();
-ctx.moveTo(600, 600);
-ctx.lineTo(700, 600);
-ctx.stroke();
-// </Row L>
-
-// <Row M>
-ctx.moveTo(50, 650);
-ctx.lineTo(100, 650);
-ctx.stroke();
-ctx.moveTo(150, 650);
-ctx.lineTo(250, 650);
-ctx.stroke();
-ctx.moveTo(550, 650);
-ctx.lineTo(600, 650);
-ctx.stroke();
-// </Row M>
-
-
-
-//--------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------
-
-
+// maze arrays
 var maze1 = [ // Row A
               [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: true, down: true, left: false, name: 'A2'}, {up: true, right: false, down: false, left: true, name: 'A3'}, {up: true, right: true, down: false, left: false, name: 'A4'}, {up: true, right: false, down: false, left: true, name: 'A5'}, {up: true, right: false, down: true, left: false, name: 'A6'}, {up: true, right: false, down: true, left: false, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: true, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: true, name: 'A10'}, {up: true, right: false, down: true, left: false, name: 'A11'}, {up: true, right: false, down: true, left: false, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: true, left: false, name: 'A14'}],
               // Row B
@@ -504,6 +62,62 @@ var maze1 = [ // Row A
             ];
 
 
+// maze drawing functions
+var drawHorizontal = function(maze, row) {
+  for (xcoord = 0; xcoord < 14; xcoord++) {
+    if (maze[row][xcoord].down === true) {
+      ctx.moveTo(xcoord * 50, (row + 1) * 50);
+      ctx.lineTo(xcoord * 50 + 50, (row + 1) * 50);
+      ctx.stroke();
+    }
+  }
+};
+
+var drawVertical = function(maze, row) {
+  for (xcoord = 0; xcoord < 14; xcoord++) {
+    if (maze[row][xcoord].left === true) {
+      ctx.moveTo(xcoord * 50, (row + 1) * 50);
+      ctx.lineTo(xcoord * 50, (row + 1) * 50 - 50);
+      ctx.stroke();
+    }
+  }
+};
+
+
+// maze drawing function calls
+drawHorizontal(maze1, 0);
+drawHorizontal(maze1, 1);
+drawHorizontal(maze1, 2);
+drawHorizontal(maze1, 3);
+drawHorizontal(maze1, 4);
+drawHorizontal(maze1, 5);
+drawHorizontal(maze1, 6);
+drawHorizontal(maze1, 7);
+drawHorizontal(maze1, 8);
+drawHorizontal(maze1, 9);
+drawHorizontal(maze1, 10);
+drawHorizontal(maze1, 11);
+drawHorizontal(maze1, 12);
+drawHorizontal(maze1, 13);
+
+drawVertical(maze1, 0);
+drawVertical(maze1, 1);
+drawVertical(maze1, 2);
+drawVertical(maze1, 3);
+drawVertical(maze1, 4);
+drawVertical(maze1, 5);
+drawVertical(maze1, 6);
+drawVertical(maze1, 7);
+drawVertical(maze1, 8);
+drawVertical(maze1, 9);
+drawVertical(maze1, 10);
+drawVertical(maze1, 11);
+drawVertical(maze1, 12);
+drawVertical(maze1, 13);
+
+
+
+
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 
@@ -513,8 +127,6 @@ socket.on('replicate', function(data) {
   $('#mouse').attr('src', data[2]);
   coordx = data[3];
   coordy = data[4];
-  console.log("x:", data[3]);
-  console.log("y:", data[4]);
   // Check win
   if (coordx === 13 && coordy === 12) {
     setTimeout(function() {
@@ -524,10 +136,18 @@ socket.on('replicate', function(data) {
 });
 
 
-
 angularApp.controller("MainController", function($scope) {
+
+  // front-end timer
+  frontClock = new FlipClock($('.timer'), time, {
+    clockFace: 'MinuteCounter',
+    autoStart: false,
+    countdown: true
+  });
+
   $scope.ready = true;
   $scope.delay = false;
+  $scope.timeup = false;
   $scope.key = function($event) {
     $event.preventDefault();
     if ($scope.isCounting === true && $scope.delay === false) {
@@ -535,7 +155,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
             shock.play();
-            // $scope.delay = true;
+            $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -551,7 +171,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
             shock.play();
-            // $scope.delay = true;
+            $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -567,7 +187,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
             shock.play();
-            // $scope.delay = true;
+            $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -582,7 +202,7 @@ angularApp.controller("MainController", function($scope) {
           if (maze1[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
             shock.play();
-            // $scope.delay = true;
+            $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
               console.log('delay');
@@ -593,11 +213,6 @@ angularApp.controller("MainController", function($scope) {
           }
         }
       }
-      // $scope.delay = true;
-      // setTimeout(function() {
-      //   $scope.delay = false;
-      //   console.log('delay');
-      // }, 3000);
    };
    $scope.startTimer = function() {
      socket.emit('beginTimer');
@@ -609,12 +224,13 @@ angularApp.controller("MainController", function($scope) {
      $scope.$apply();
    });
    socket.on('timeUp', function() {
-     console.log('Time\'s up!');
+     $scope.timeup = true;
      $scope.isCounting = false;
      $scope.resetShow = true;
      $scope.$apply();
    });
    $scope.reset = function() {
+     $scope.timeup = false;
      socket.emit('reset');
    };
    socket.on('delayOver', function() {
@@ -633,7 +249,7 @@ angularApp.controller("MainController", function($scope) {
    });
    socket.on('win', function() {
      $scope.isCounting = false;
-     $scope.resetShow = true;
+     $scope.victory = true;
      frontClock.stop();
      $scope.$apply();
    });

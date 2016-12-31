@@ -7,10 +7,21 @@ var y = 20;
 var src = "images/mouse_down.png";
 var coordX = 0;
 var coordY = 0;
-var isCounting = false;
-
+var isCounting = true;
+// var runTimer = setInterval(timer, 1000);
+// var time = 30;
 
 app.use(express.static('public'));
+io.emit('start');
+// function timer() {
+//     time--;
+//     console.log(time);
+//     io.emit('currentTime', time);
+//     if (time === 0) {
+//       clearInterval(runTimer);
+//       io.emit('timeUp');
+//     }
+// }
 
 io.on('connection', function(socket){
   console.log("You connected");
@@ -55,10 +66,13 @@ io.on('connection', function(socket){
   });
   socket.on('beginTimer',function(data) {
     io.emit('start');
-    var isCounting = true;
+    isCounting = true;
     setTimeout(function() {
-      io.emit('timeUp');
-    }, 121000);
+      if (isCounting === true) {
+        io.emit('timeUp');
+        console.log("Time's up");
+      }
+    }, 10000);
   });
   socket.on('reset', function() {
     coordX = 0;
@@ -68,6 +82,7 @@ io.on('connection', function(socket){
     io.emit('newGame');
   });
   socket.on('winEvent', function() {
+    isCounting = false;
     io.emit('win');
   });
 });

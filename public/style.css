@@ -6,6 +6,7 @@ body {
 
 .boardDiv {
   float: left;
+  height: 700px;
 }
 
 #titleHeader {
@@ -13,6 +14,7 @@ body {
   font-family: 'Bangers', cursive;
   margin: 0;
   margin-left: 800px;
+  margin-bottom: 25px;
 }
 
 #dpad {
@@ -21,7 +23,7 @@ body {
 
 #canvas {
   border: 3px solid black;
-  background: linear-gradient(to bottom right, aquamarine, aqua);
+  background-color: aqua;
 }
 
 #mouse {
@@ -72,32 +74,61 @@ body {
   background-color: white;
 }
 
-.instructions {
-  position: absolute;
+.instructions1 {
+  float: left;
   background-color: white;
-  top: 400px;
-  left: 830px;
   border: 1px solid black;
-  padding: 10px;
+  padding: 5px 10px;
+  margin-top: 75px;
+  margin-left: 125px;
   font-size: 2em;
   font-family: 'Bangers', cursive;
 }
 
-.instructions p {
+.instructions1 p {
+  margin: 0;
+}
+
+.instructions2 {
+  float: left;
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin-left: 125px;
+  font-size: 2em;
+  font-family: 'Bangers', cursive;
+}
+
+.instructions2 p {
   margin: 0;
 }
 
 .win {
-  position: absolute;
+  float: left;
   background-color: white;
-  top: 470px;
-  left: 830px;
+  color: green;
   border: 1px solid black;
-  padding: 10px;
+  padding: 10px 129.5px;
+  margin-left: 125px;
   font-size: 2em;
   font-family: 'Bangers', cursive;
 }
 
 .win p {
+  margin: 0;
+}
+
+.lose {
+  float: left;
+  background-color: white;
+  color: red;
+  border: 1px solid black;
+  padding: 10px 125px;
+  margin-left: 125px;
+  font-size: 2em;
+  font-family: 'Bangers', cursive;
+}
+
+.lose p {
   margin: 0;
 }
