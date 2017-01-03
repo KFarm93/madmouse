@@ -10,7 +10,7 @@ mouse.src = 'images/mouse_down.png';
 mouse.id = 'mouse';
 coordy = 0;
 coordx = 0;
-var frontClock;
+// var frontClock;
 var isCounting = false;
 var shock = new Audio("ESPARK1.wav");
 
@@ -213,7 +213,7 @@ angularApp.controller("MainController", function($scope) {
   //    socket.emit('beginTimer');
   //  };
    socket.on('start', function() {
-     frontClock.start();
+    //  frontClock.start();
      $scope.ready = false;
      $scope.isCounting = true;
      $scope.$apply();
@@ -260,7 +260,7 @@ angularApp.controller("MainController", function($scope) {
    socket.on('win', function() {
      $scope.isCounting = false;
      $scope.victory = true;
-     frontClock.stop();
+    //  frontClock.stop();
      $scope.$apply();
    });
    socket.on('currentTime', function(data) {

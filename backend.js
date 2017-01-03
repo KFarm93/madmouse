@@ -46,6 +46,7 @@ function timer() {
     // checks if time is up
     if (realTime === 0) {
       console.log('Time is up! Line 47');
+      console.log('runTimer: ', runTimer);
       clearInterval(runTimer);
       io.emit('timeUp');
     }
@@ -104,7 +105,7 @@ io.on('connection', function(socket){
     // realTime is reset here:
     realTime = 120;
     seconds = 60;
-    var runTimer = setInterval(timer, 1000);
+    runTimer = setInterval(timer, 1000);
     io.emit('newGame');
   });
   socket.on('winEvent', function() {
