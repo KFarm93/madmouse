@@ -5,8 +5,9 @@ body {
 }
 
 .boardDiv {
+  display: block;
   float: left;
-  height: 700px;
+  height: 750px;
 }
 
 #titleHeader {
@@ -24,6 +25,7 @@ body {
 #canvas {
   border: 3px solid black;
   background-color: aqua;
+  float: left;
 }
 
 #mouse {
@@ -45,9 +47,13 @@ body {
 }
 
 .timer {
+  font-size: 5em;
+  font-family: 'Bangers', cursive;
+  margin: 0;
   margin-left: 800px;
-  display: block;
-  height: 100px;
+  margin-bottom: 25px;
+  /*background-color: white;*/
+  width: 150px;
 }
 
 .startButton {
@@ -69,38 +75,24 @@ body {
   font-size: 2.5em;
   font-family: 'Bangers', cursive;
   margin-left: 125px;
-  clear: right;
   border: 1px solid black;
   background-color: white;
 }
 
 .instructions1 {
-  float: left;
-  background-color: white;
-  border: 1px solid black;
-  padding: 5px 10px;
-  margin-top: 75px;
-  margin-left: 125px;
   font-size: 2em;
   font-family: 'Bangers', cursive;
-}
-
-.instructions1 p {
   margin: 0;
+  margin-left: 800px;
+  margin-bottom: 25px;
 }
 
 .instructions2 {
-  float: left;
-  background-color: white;
-  border: 1px solid black;
-  padding: 5px 10px;
-  margin-left: 125px;
   font-size: 2em;
   font-family: 'Bangers', cursive;
-}
-
-.instructions2 p {
   margin: 0;
+  margin-left: 800px;
+  margin-bottom: 25px;
 }
 
 .win {
@@ -130,5 +122,19 @@ body {
 }
 
 .lose p {
+  margin: 0;
+}
+
+.reset {
+  float: left;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px 125px;
+  margin-left: 125px;
+  font-size: 2em;
+  font-family: 'Bangers', cursive;
+}
+
+.reset p {
   margin: 0;
 }

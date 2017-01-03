@@ -13,7 +13,7 @@ coordx = 0;
 var frontClock;
 var isCounting = false;
 var shock = new Audio("ESPARK1.wav");
-var time = 10;
+
 
 $(document).ready(function() {
   $('body').append(cheese);
@@ -138,17 +138,12 @@ socket.on('replicate', function(data) {
 
 angularApp.controller("MainController", function($scope) {
 
-  // front-end timer
-  frontClock = new FlipClock($('.timer'), time, {
-    clockFace: 'MinuteCounter',
-    autoStart: false,
-    countdown: true
-  });
-
+  $scope.isCounting = true;
   $scope.ready = true;
   $scope.delay = false;
   $scope.timeup = false;
   $scope.key = function($event) {
+    console.log($scope.isCounting);
     $event.preventDefault();
     if ($scope.isCounting === true && $scope.delay === false) {
       if ($event.keyCode == 38 || $event.keyCode == 87) {
@@ -214,9 +209,9 @@ angularApp.controller("MainController", function($scope) {
         }
       }
    };
-   $scope.startTimer = function() {
-     socket.emit('beginTimer');
-   };
+  //  $scope.startTimer = function() {
+  //    socket.emit('beginTimer');
+  //  };
    socket.on('start', function() {
      frontClock.start();
      $scope.ready = false;
@@ -227,6 +222,22 @@ angularApp.controller("MainController", function($scope) {
      $scope.timeup = true;
      $scope.isCounting = false;
      $scope.resetShow = true;
+     var runCountdown = setInterval(countdown, 1000);
+     var seconds = 10;
+     function countdown() {
+       seconds--;
+       $scope.reloadCount = seconds;
+       console.log("Seconds: ", seconds);
+       $scope.$apply();
+       if (seconds === 0) {
+         clearInterval(runCountdown);
+         $scope.timeup = false;
+         $scope.isCounting = true;
+         $scope.resetShow = false;
+         socket.emit('reset');
+         $scope.$apply();
+       }
+     }
      $scope.$apply();
    });
    $scope.reset = function() {
@@ -240,7 +251,6 @@ angularApp.controller("MainController", function($scope) {
    socket.on('newGame', function() {
      $scope.resetShow = false;
      $scope.ready = true;
-     frontClock.setTime(120);
      coordx = 0;
      coordy = 0;
      $('#mouse').css({top: '20px', left: '20px'});
@@ -251,6 +261,12 @@ angularApp.controller("MainController", function($scope) {
      $scope.isCounting = false;
      $scope.victory = true;
      frontClock.stop();
+     $scope.$apply();
+   });
+   socket.on('currentTime', function(data) {
+     $scope.minutes = data[0];
+     $scope.seconds = data[1];
+     console.log("Data:", data);
      $scope.$apply();
    });
  });

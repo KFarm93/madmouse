@@ -11,24 +11,26 @@
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
   </head>
   <body ng-app="madmouse" ng-controller="MainController" ng-keydown="key($event)">
-    <div class="boardDiv">
-      <canvas id="canvas" width="700" height="700"></canvas>
-    </div>
+    <canvas id="canvas" width="700" height="700"></canvas>
     <p id="titleHeader">MadMouse</p>
-    <div class="timer"></div>
-    <button class="startButton" type="sumbit" ng-click="startTimer()" ng-show="ready">Start!</button>
-    <button class="resetButton" type="submit" ng-click="reset()" ng-show="resetShow">New Game</button>
-    <div class="instructions1">
-      <p>Arrow keys or WASD to move!</p>
+    <p class="timer">{{minutes}}:{{seconds}}</p>
+    <!-- <div class="timer"></div> -->
+    <!-- <button class="startButton" type="sumbit" ng-click="startTimer()" ng-show="ready">Start!</button> -->
+    <!-- <button class="resetButton" type="submit" ng-click="reset()" ng-show="resetShow">New Game</button> -->
+    <div>
+      <p class="instructions1">Arrow keys or WASD to move!</p>
     </div>
-    <div class="instructions2">
-      <p>Get to the cheese before time runs out!</p>
+    <div>
+      <p class="instructions2">Get to the cheese before time runs out!</p>
     </div>
     <div class="win" ng-show="victory">
       <p>Victory!</p>
     </div>
     <div class="lose" ng-show="timeup">
       <p>Failure!</p>
+    </div>
+    <div class="reset" ng-show="resetShow">
+      <p>Reloading in {{reloadCount}}...</p>
     </div>
     <!-- <div class="playersOnline">
       <p ng-show="onePlayer"> player online</p>
