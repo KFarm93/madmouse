@@ -46,7 +46,7 @@ body {
   z-index: 1;
 }
 
-.timer {
+#timer {
   font-size: 5em;
   font-family: 'Bangers', cursive;
   margin: 0;
@@ -136,5 +136,20 @@ body {
 }
 
 .reset p {
+  margin: 0;
+}
+
+.recharging {
+  float: left;
+  background-color: white;
+  color: red;
+  border: 1px solid black;
+  padding: 10px 125px;
+  margin-left: 125px;
+  font-size: 2em;
+  font-family: 'Bangers', cursive;
+}
+
+.recharging p {
   margin: 0;
 }

@@ -10,53 +10,98 @@ var coordY = 0;
 var isCounting = true;
 var runTimer = setInterval(timer, 1000);
 var realTime = 120;
-var minutes;
+var start = new Date().getTime();
+var newTime;
+var minutes = 2;
+var stop = false;
 var seconds = 60;
+var minutesPassed = 0;
+var maze;
 
 app.use(express.static('public'));
 io.emit('start');
 
+// random int generator to determine which maze
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function whichMaze() {
+  var num = getRandomInt(1,4);
+  if (num === 1) {
+    console.log("Provided maze1");
+  }
+  else if (num === 2) {
+    console.log("Provided maze2");
+  }
+  else if (num === 3) {
+    console.log("Provided maze3");
+  }
+  return num;
+}
+
+maze = whichMaze();
+
 // timer
 function timer() {
+    newTime = new Date().getTime();
+    realMinutes = (newTime - start) / 60000;
     realTime--;
-    seconds--;
+    // console.log("minutesPassed:", minutesPassed);
+    // console.log("stop: ", stop);
+    // console.log("minutes: ", minutes);
+    // console.log("Seconds: ", seconds);
+    // makes sure seconds is at least one when decrementing and sets stop back to false
+    if (seconds >= 1) {
+      seconds--;
+    }
+    // makes sure seconds gets set back to 59 after a minute has passed
+    else if (seconds === "00" && minutesPassed === 0) {
+      seconds = 59;
+      minutesPassed++;
+      console.log("1 line #39");
+    }
+
+    else if (seconds === "00" && minutesPassed > 0) {
+      stop = true;
+      seconds = "00";
+      console.log("2 line #45");
+    }
 
     // adds '0' before seconds to read as '09', '08', etc.
-    if (seconds <= 9) {
+    if (seconds <= 9 && stop === false) {
       seconds = "0" + seconds;
     }
-    // makes sure seconds is equal to 59 to signify a new minute, as realtime in this case will be either 119 or 59
-    if (realTime === 119 || realTime === 59) {
-      seconds = 59;
-    }
-    console.log("realTime: ", realTime, "seconds: ", seconds);
 
-    // checks if there are at least 2 minutes remaining
-    if (realTime < 180 && realTime >= 120) {
-      minutes = 2;
-    }
     // checks if there is at least 1 minute
-    else if (realTime <= 119 && realTime >= 60) {
+    if (realMinutes <= 1.01) {
       minutes = 1;
     }
     // checks if there is less than 1 minute remaining
-    else if (realTime <=59) {
+    else if (realMinutes > 1.01) {
       minutes = 0;
     }
     // checks if time is up
-    if (realTime === 0) {
-      console.log('Time is up! Line 47');
-      console.log('runTimer: ', runTimer);
-      clearInterval(runTimer);
+    if (newTime - start >= 120000 && newTime - start < 120999) {
       io.emit('timeUp');
     }
+    if (isCounting === true) {
+      io.emit('currentTime', [minutes, seconds]);
+    }
+    else if (isCounting === false) {
+      // pass
+    }
+
     // updates timer on frontend
-    io.emit('currentTime', [minutes, seconds]);
+
 }
 
 io.on('connection', function(socket){
   console.log("You connected");
-  socket.emit('replicate', [x, y, src, coordX, coordY]);
+  socket.emit('init', maze);
+  socket.emit('replicate', [x, y, src, coordX, coordY, maze]);
 
   socket.on('keypress', function(data) {
     if (data[0] === 'top') {
@@ -67,14 +112,12 @@ io.on('connection', function(socket){
         coordX += data[4];
         console.log('coordX: ', coordX);
         src = 'images/mouse_up.png';
-        console.log("up");
       }
       else if (data[1] === 'down') {
         y += 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_down.png';
-        console.log("down");
       }
     }
     if (data[0] === 'left') {
@@ -83,14 +126,12 @@ io.on('connection', function(socket){
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_left.png';
-        console.log("left");
       }
       else if (data[1] === 'right') {
         x += 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_right.png';
-        console.log("right");
       }
     }
     io.emit('replicate', [x, y, src, coordX, coordY]);
@@ -105,8 +146,14 @@ io.on('connection', function(socket){
     // realTime is reset here:
     realTime = 120;
     seconds = 60;
-    runTimer = setInterval(timer, 1000);
-    io.emit('newGame');
+    start = new Date().getTime();
+    stop = false;
+    minutesPassed = 0;
+    minutes = 2;
+    isCounting = true;
+    maze = whichMaze();
+    console.log("provided maze ", maze);
+    io.emit('newGame', maze);
   });
   socket.on('winEvent', function() {
     isCounting = false;
