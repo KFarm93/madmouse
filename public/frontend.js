@@ -73,7 +73,7 @@ var maze2 = [ // Row A
               // Row D
               [{up: false, right: true, down: false, left: true, name: 'D1'}, {up: false, right: true, down: false, left: true, name: 'D2'}, {up: true, right: false, down: false, left: true, name: 'D3'}, {up: true, right: true, down: false, left: false, name: 'D4'}, {up: true, right: false, down: false, left: true, name: 'D5'}, {up: true, right: true, down: false, left: false, name: 'D6'}, {up: false, right: false, down: true, left: true, name: 'D7'}, {up: true, right: true, down: false, left: false, name: 'D8'}, {up: true, right: false, down: false, left: true, name: 'D9'}, {up: false, right: true, down: true, left: false, name: 'D10'}, {up: false, right: true, down: false, left: true, name: 'D11'}, {up: true, right: false, down: false, left: true, name: 'D12'}, {up: true, right: false, down: true, left: false, name: 'D13'}, {up: false, right: true, down: false, left: false, name: 'D14'}],
               // Row E
-              [{up: false, right: true, down: false, left: true, name: 'E1'}, {up: false, right: true, down: false, left: true, name: 'E2'}, {up: false, right: true, down: false, left: true, name: 'E3'}, {up: false, right: false, down: true, left: true, name: 'E4'}, {up: false, right: true, down: true, left: false, name: 'E5'}, {up: false, right: false, down: true, left: true, name: 'E6'}, {up: true, right: true, down: false, left: false, name: 'E7'}, {up: false, right: true, down: false, left: true, name: 'E8'}, {up: false, right: false, down: true, left: true, name: 'E9'}, {up: false, right: false, down: true, left: false, name: 'E10'}, {up: false, right: true, down: false, left: false, name: 'E11'}, {up: true, right: false, down: true, left: true, name: 'E12'}, {up: true, right: true, down: false, left: false, name: 'E13'}, {up: false, right: true, down: false, left: true, name: 'E14'}],
+              [{up: false, right: true, down: false, left: true, name: 'E1'}, {up: false, right: true, down: false, left: true, name: 'E2'}, {up: false, right: true, down: false, left: true, name: 'E3'}, {up: false, right: false, down: true, left: true, name: 'E4'}, {up: false, right: true, down: true, left: false, name: 'E5'}, {up: false, right: false, down: true, left: true, name: 'E6'}, {up: true, right: true, down: false, left: false, name: 'E7'}, {up: false, right: true, down: false, left: true, name: 'E8'}, {up: false, right: false, down: true, left: true, name: 'E9'}, {up: true, right: false, down: true, left: false, name: 'E10'}, {up: false, right: true, down: false, left: false, name: 'E11'}, {up: true, right: false, down: true, left: true, name: 'E12'}, {up: true, right: true, down: false, left: false, name: 'E13'}, {up: false, right: true, down: false, left: true, name: 'E14'}],
               // Row F
               [{up: false, right: true, down: false, left: true, name: 'F1'}, {up: false, right: true, down: false, left: true, name: 'F2'}, {up: false, right: true, down: false, left: true, name: 'F3'}, {up: true, right: false, down: true, left: true, name: 'F4'}, {up: true, right: false, down: false, left: false, name: 'F5'}, {up: true, right: true, down: false, left: false, name: 'F6'}, {up: false, right: true, down: false, left: true, name: 'F7'}, {up: false, right: true, down: false, left: true, name: 'F8'}, {up: true, right: true, down: false, left: true, name: 'F9'}, {up: true, right: false, down: false, left: true, name: 'F10'}, {up: false, right: true, down: true, left: false, name: 'F11'}, {up: true, right: false, down: false, left: true, name: 'F12'}, {up: false, right: true, down: true, left: false, name: 'F13'}, {up: false, right: true, down: false, left: true, name: 'F14'}],
               // Row G
@@ -133,17 +133,16 @@ var maze3 = [ // Row A
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 socket.on('init', function(data) {
-  if (data === 1) {
+  if (data === "maze1") {
     maze = maze1;
   }
-  else if (data === 2) {
+  else if (data === "maze2") {
     maze = maze2;
   }
-  else if (data === 3) {
+  else if (data === "maze3") {
     maze = maze3;
   }
   var drawHorizontal = function(maze, row) {
-    console.log("maze is: ", maze);
     for (xcoord = 0; xcoord < 14; xcoord++) {
       if (maze[row][xcoord].down === true) {
         ctx.moveTo(xcoord * 50, (row + 1) * 50);
@@ -169,6 +168,7 @@ socket.on('init', function(data) {
 });
 
 socket.on('replicate', function(data) {
+  console.log("data: ", data);
   $('#mouse').offset({ top: data[1], left: data[0] });
   $('#mouse').attr('src', data[2]);
   coordx = data[3];
@@ -190,7 +190,6 @@ angularApp.controller("MainController", function($scope) {
   $scope.timeup = false;
 
   socket.on('newGame', function(data) {
-    console.log(data);
     $scope.resetShow = false;
     $scope.victory = false;
     $scope.ready = true;
@@ -206,7 +205,6 @@ angularApp.controller("MainController", function($scope) {
     function drawIt() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var drawHorizontal = function(maze, row) {
-        console.log("maze is: ", maze);
         for (xcoord = 0; xcoord < 14; xcoord++) {
           if (maze[row][xcoord].down === true) {
             ctx.moveTo(xcoord * 50, (row + 1) * 50);
@@ -243,70 +241,67 @@ angularApp.controller("MainController", function($scope) {
     $scope.$apply();
   });
   $scope.key = function($event) {
-    console.log($scope.isCounting);
     $event.preventDefault();
     if ($scope.isCounting === true && $scope.delay === false) {
       if ($event.keyCode == 38 || $event.keyCode == 87) {
-          if (maze[coordy][coordx].up === false) {
-            console.log(maze);
+        // socket.emit('moveUp', [coordx, coordy]);
+          // if (maze[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
             shock.play();
             $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
-              console.log('delay');
             }, 1000);
-          }
-          else {
-            // blocked
-          }
+          // }
+          // else {
+          //   // blocked
+          // }
 
         }
      else if ($event.keyCode == 39 || $event.keyCode == 68 && $scope.delay === false) {
           $event.preventDefault();
-          if (maze[coordy][coordx].right === false) {
+          // socket.emit('moveRight', [coordx, coordy]);
+          // if (maze[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
             shock.play();
             $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
-              console.log('delay');
             }, 1000);
-          }
-          else {
-            // blocked
-          }
+          // }
+          // else {
+          //   // blocked
+          // }
         }
       else if ($event.keyCode == 40 || $event.keyCode == 83 && $scope.delay === false) {
           $event.preventDefault();
-          console.log(coordy);
-          if (maze[coordy][coordx].down === false) {
+          // socket.emit('moveDown', [coordx, coordy]);
+          // if (maze[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
             shock.play();
             $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
-              console.log('delay');
             }, 1000);
-          }
-          else {
-            // blocked
-          }
+          // }
+          // else {
+          //   // blocked
+          // }
         }
       else if ($event.keyCode == 37 || $event.keyCode == 65 && $scope.delay === false) {
           $event.preventDefault();
-          if (maze[coordy][coordx].left === false) {
+          // socket.emit('moveLeft', [coordx, coordy]);
+          // if (maze[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
             shock.play();
             $scope.delay = true;
             setTimeout(function() {
               $scope.delay = false;
-              console.log('delay');
             }, 1000);
-          }
-          else {
-            // blocked
-          }
+          // }
+          // else {
+          //   // blocked
+          // }
         }
       }
    };
@@ -359,7 +354,6 @@ angularApp.controller("MainController", function($scope) {
    socket.on('currentTime', function(data) {
      $scope.minutes = data[0];
      $scope.seconds = data[1];
-     console.log("Data:", data);
      $scope.$apply();
    });
  });
