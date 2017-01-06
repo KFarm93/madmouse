@@ -134,7 +134,6 @@ var maze3 = [ // Row A
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 socket.on('init', function(data) {
-  console.log("test: ", data);
   maze = data;
   var drawHorizontal = function(maze, row) {
     for (xcoord = 0; xcoord < 14; xcoord++) {
@@ -171,7 +170,6 @@ angularApp.controller("MainController", function($scope) {
   // $scope.delay = false;
   $scope.timeup = false;
   socket.on('replicate', function(data) {
-    console.log("data: ", data);
     $('#mouse').offset({ top: data[1], left: data[0] });
     $('#mouse').attr('src', data[2]);
     coordx = data[3];
