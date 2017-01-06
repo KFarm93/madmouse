@@ -12,6 +12,7 @@ coordy = 0;
 coordx = 0;
 var isCounting = false;
 var maze;
+var pplConnected;
 
 
 
@@ -160,27 +161,30 @@ socket.on('init', function(data) {
   }
 });
 
-socket.on('replicate', function(data) {
-  console.log("data: ", data);
-  $('#mouse').offset({ top: data[1], left: data[0] });
-  $('#mouse').attr('src', data[2]);
-  coordx = data[3];
-  coordy = data[4];
-  // Check win
-  if (coordx === 13 && coordy === 12) {
-    setTimeout(function() {
-      socket.emit('winEvent');
-    }, 500);
-  }
-});
+
 
 
 
 angularApp.controller("MainController", function($scope) {
   $scope.isCounting = true;
   $scope.ready = true;
-  $scope.delay = false;
+  // $scope.delay = false;
   $scope.timeup = false;
+  socket.on('replicate', function(data) {
+    console.log("data: ", data);
+    $('#mouse').offset({ top: data[1], left: data[0] });
+    $('#mouse').attr('src', data[2]);
+    coordx = data[3];
+    coordy = data[4];
+    $scope.pplConnected = data[5];
+    // Check win
+    if (coordx === 13 && coordy === 12) {
+      setTimeout(function() {
+        socket.emit('winEvent');
+      }, 500);
+    }
+  });
+  // console.log($scope.pplConnected);
 
   socket.on('newGame', function(data) {
     $scope.resetShow = false;
@@ -235,62 +239,46 @@ angularApp.controller("MainController", function($scope) {
   });
   $scope.key = function($event) {
     $event.preventDefault();
-    if ($scope.isCounting === true && $scope.delay === false) {
+    if ($scope.isCounting === true) {
       if ($event.keyCode == 38 || $event.keyCode == 87) {
         // socket.emit('moveUp', [coordx, coordy]);
           // if (maze[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
             shock.play();
-            $scope.delay = true;
-            setTimeout(function() {
-              $scope.delay = false;
-            }, 1000);
           // }
           // else {
           //   // blocked
           // }
 
         }
-     else if ($event.keyCode == 39 || $event.keyCode == 68 && $scope.delay === false) {
+     else if ($event.keyCode == 39 || $event.keyCode == 68) {
           $event.preventDefault();
           // socket.emit('moveRight', [coordx, coordy]);
           // if (maze[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
             shock.play();
-            $scope.delay = true;
-            setTimeout(function() {
-              $scope.delay = false;
-            }, 1000);
           // }
           // else {
           //   // blocked
           // }
         }
-      else if ($event.keyCode == 40 || $event.keyCode == 83 && $scope.delay === false) {
+      else if ($event.keyCode == 40 || $event.keyCode == 83) {
           $event.preventDefault();
           // socket.emit('moveDown', [coordx, coordy]);
           // if (maze[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
             shock.play();
-            $scope.delay = true;
-            setTimeout(function() {
-              $scope.delay = false;
-            }, 1000);
           // }
           // else {
           //   // blocked
           // }
         }
-      else if ($event.keyCode == 37 || $event.keyCode == 65 && $scope.delay === false) {
+      else if ($event.keyCode == 37 || $event.keyCode == 65) {
           $event.preventDefault();
           // socket.emit('moveLeft', [coordx, coordy]);
           // if (maze[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
             shock.play();
-            $scope.delay = true;
-            setTimeout(function() {
-              $scope.delay = false;
-            }, 1000);
           // }
           // else {
           //   // blocked

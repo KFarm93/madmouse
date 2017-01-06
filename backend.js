@@ -17,6 +17,7 @@ var stop = false;
 var seconds = 60;
 var minutesPassed = 0;
 var maze;
+var pplConnected = 0;
 
 app.use(express.static('public'));
 io.emit('start');
@@ -144,13 +145,11 @@ function timer() {
     else if (seconds === "00" && minutesPassed === 0) {
       seconds = 59;
       minutesPassed++;
-      console.log("1 line #39");
     }
 
     else if (seconds === "00" && minutesPassed > 0) {
       stop = true;
       seconds = "00";
-      console.log("2 line #45");
     }
 
     // adds '0' before seconds to read as '09', '08', etc.
@@ -183,17 +182,17 @@ function timer() {
 
 io.on('connection', function(socket){
   console.log("You connected");
+  console.log(maze);
+  pplConnected++;
   socket.emit('init', maze);
-  socket.emit('replicate', [x, y, src, coordX, coordY, maze]);
+  socket.emit('replicate', [x, y, src, coordX, coordY, pplConnected]);
 
   socket.on('keypress', function(data) {
     if (data[0] === 'top') {
       if (data[1] === 'up' && maze[coordY][coordX].up === false) {
         y -= 50;
         coordY += data[3];
-        console.log('coordY: ', coordY);
         coordX += data[4];
-        console.log('coordX: ', coordX);
         src = 'images/mouse_up.png';
       }
       else if (data[1] === 'down' && maze[coordY][coordX].down === false) {
@@ -204,7 +203,6 @@ io.on('connection', function(socket){
       }
     }
     if (data[0] === 'left') {
-      console.log(maze);
       if (data[1] === 'left' && maze[coordY][coordX].left === false) {
         x -= 50;
         coordY += data[3];
@@ -218,7 +216,7 @@ io.on('connection', function(socket){
         src = 'images/mouse_right.png';
       }
     }
-    io.emit('replicate', [x, y, src, coordX, coordY]);
+    io.emit('replicate', [x, y, src, coordX, coordY, pplConnected]);
   });
 
   socket.on('reset', function() {
@@ -236,12 +234,14 @@ io.on('connection', function(socket){
     minutes = 2;
     isCounting = true;
     maze = whichMaze();
-    console.log("provided maze ", maze);
     io.emit('newGame', maze);
   });
   socket.on('winEvent', function() {
     isCounting = false;
     io.emit('win');
+  });
+  socket.on('disconnect', function() {
+    pplConnected--;
   });
 });
 
