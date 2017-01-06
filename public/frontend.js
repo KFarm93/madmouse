@@ -133,7 +133,7 @@ var maze3 = [ // Row A
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 socket.on('init', function(data) {
-  console.log(data);
+  console.log("test: ", data);
   maze = data;
   var drawHorizontal = function(maze, row) {
     for (xcoord = 0; xcoord < 14; xcoord++) {
