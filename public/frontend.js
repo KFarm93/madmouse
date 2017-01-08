@@ -290,6 +290,7 @@ angularApp.controller("MainController", function($scope) {
      $scope.$apply();
    });
    socket.on('timeUp', function() {
+     console.log("Time's up!");
      $scope.timeup = true;
      $scope.isCounting = false;
      $scope.resetShow = true;
