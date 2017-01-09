@@ -295,7 +295,7 @@ angularApp.controller("MainController", function($scope) {
      $scope.isCounting = false;
      $scope.resetShow = true;
      setTimeout(function(){
-       socket.emit('reset');
+      //  socket.emit('reset');
        $scope.timeup = false;
        $scope.isCounting = true;
        $scope.resetShow = false;

@@ -150,6 +150,7 @@ function timer() {
     else if (seconds === "00" && minutesPassed > 0) {
       stop = true;
       seconds = "00";
+      console.log("newTime - start: ", newTime - start);
     }
 
     // adds '0' before seconds to read as '09', '08', etc.
@@ -169,6 +170,24 @@ function timer() {
     if (newTime - start >= 120000 && newTime - start < 120999) {
       console.log("Time's up!");
       io.emit('timeUp');
+      setTimeout(function(){
+        coordX = 0;
+        coordY = 0;
+        x = 20;
+        y = 20;
+
+        // realTime is reset here:
+        realTime = 120;
+        seconds = 60;
+        stop = false;
+        minutesPassed = 0;
+        minutes = 2;
+        isCounting = true;
+        maze = whichMaze();
+        start = new Date().getTime();
+        console.log("start: ", start);
+        io.emit('newGame', maze);
+      }, 5000);
     }
     if (isCounting === true) {
       io.emit('currentTime', [minutes, seconds]);
@@ -227,13 +246,13 @@ io.on('connection', function(socket){
     // realTime is reset here:
     realTime = 120;
     seconds = 60;
-    start = new Date().getTime();
-    console.log("start: ", start);
     stop = false;
     minutesPassed = 0;
     minutes = 2;
     isCounting = true;
     maze = whichMaze();
+    start = new Date().getTime();
+    console.log("start: ", start);
     io.emit('newGame', maze);
   });
   socket.on('winEvent', function() {
