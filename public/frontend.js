@@ -23,6 +23,7 @@ var shock = new Audio("ESPARK1.wav");
 $(document).ready(function() {
   $('body').append(cheese);
   $('body').append(mouse);
+  $('#canvas').offset({top: 10, left: 10});
 });
 
 // readying canvas lines
