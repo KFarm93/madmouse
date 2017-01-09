@@ -333,7 +333,9 @@ angularApp.controller("MainController", function($scope) {
    });
    socket.on('currentTime', function(data) {
      $scope.minutes = data[0];
+     console.log("minutes: ", data[0]);
      $scope.seconds = data[1];
+     console.log("seconds: ", data[1]);
      $scope.$apply();
    });
  });
