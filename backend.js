@@ -242,7 +242,6 @@ io.on('connection', function(socket){
     coordY = 0;
     x = 20;
     y = 20;
-
     // realTime is reset here:
     realTime = 120;
     seconds = 60;
