@@ -230,7 +230,7 @@ angularApp.controller("MainController", function($scope) {
    //  maze = data;
     coordx = 0;
     coordy = 0;
-    $('#mouse').css({top: '15px', left: '15px'});
+    $('#mouse').css({top: '20px', left: '20px'});
     $('#mouse').attr('src', 'images/mouse_down.png');
     $scope.minutes = 2;
     $scope.seconds = '00';
