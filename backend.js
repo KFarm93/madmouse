@@ -165,11 +165,11 @@ function timer() {
     }
 
     // checks if there is at least 1 minute
-    if (realMinutes <= 1.01) {
+    if (realMinutes <= 1.0) {
       minutes = 1;
     }
     // checks if there is less than 1 minute remaining
-    else if (realMinutes > 1.01) {
+    else if (realMinutes > 1.0) {
       minutes = 0;
     }
     // checks if time is up
