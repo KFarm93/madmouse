@@ -229,7 +229,7 @@ angularApp.controller("MainController", function($scope) {
    //  maze = data;
     coordx = 0;
     coordy = 0;
-    $('#mouse').css({top: '20px', left: '20px'});
+    $('#mouse').css({top: '15px', left: '15px'});
     $('#mouse').attr('src', 'images/mouse_down.png');
     $scope.minutes = 2;
     $scope.seconds = '00';
@@ -294,8 +294,7 @@ angularApp.controller("MainController", function($scope) {
      $scope.timeup = true;
      $scope.isCounting = false;
      $scope.resetShow = true;
-     setTimeout(function(){
-      //  socket.emit('reset');
+     setTimeout(function() {
        $scope.timeup = false;
        $scope.isCounting = true;
        $scope.resetShow = false;
@@ -312,23 +311,6 @@ angularApp.controller("MainController", function($scope) {
        $scope.resetShow = false;
        socket.emit('reset');
      }, 5000);
-    //  var start = new Date().getTime();
-    //  var runCountdown = setInterval(countdown, 1000);
-    //  function countdown() {
-    //    newTime = new Date().getTime();
-    //    $scope.reloadCount = seconds;
-    //    seconds--;
-    //    console.log(seconds);
-    //    $scope.$apply();
-    //    if (newTime - start >= 5000) {
-    //      $scope.timeup = false;
-    //      $scope.isCounting = true;
-    //      $scope.resetShow = false;
-    //      socket.emit('reset');
-    //      seconds = 5;
-    //      $scope.$apply();
-    //    }
-    //  }
      $scope.$apply();
    });
    socket.on('currentTime', function(data) {
