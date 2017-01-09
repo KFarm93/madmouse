@@ -228,6 +228,7 @@ io.on('connection', function(socket){
     realTime = 120;
     seconds = 60;
     start = new Date().getTime();
+    console.log("start: ", start);
     stop = false;
     minutesPassed = 0;
     minutes = 2;
