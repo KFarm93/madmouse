@@ -18,6 +18,7 @@ var seconds = 60;
 var minutesPassed = 0;
 var maze;
 var pplConnected = 0;
+var num = 0;
 
 app.use(express.static('public'));
 io.emit('start');
@@ -31,7 +32,11 @@ function getRandomInt(min, max) {
 }
 
 function whichMaze() {
-  var num = getRandomInt(1,4);
+  // random maze selection
+  // var num = getRandomInt(1,4);
+
+  // list-based maze selection
+  num++;
   if (num === 1) {
     console.log("Provided maze1");
     return [ // Row A
@@ -98,6 +103,7 @@ function whichMaze() {
   }
   else if (num === 3) {
     console.log("Provided maze3");
+    num = 0;
     return [ // Row A
                   [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: false, down: true, left: false, name: 'A2'}, {up: true, right: false, down: true, left: false, name: 'A3'}, {up: true, right: false, down: true, left: false, name: 'A4'}, {up: true, right: false, down: true, left: false, name: 'A5'}, {up: true, right: true, down: false, left: false, name: 'A6'}, {up: true, right: false, down: true, left: true, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: false, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: false, name: 'A10'}, {up: true, right: true, down: true, left: false, name: 'A11'}, {up: true, right: false, down: false, left: true, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: false, left: false, name: 'A14'}],
                   // Row B
