@@ -167,6 +167,7 @@ function timer() {
     }
     // checks if time is up
     if (newTime - start >= 120000 && newTime - start < 120999) {
+      console.log("Time's up!");
       io.emit('timeUp');
     }
     if (isCounting === true) {
@@ -181,8 +182,6 @@ function timer() {
 }
 
 io.on('connection', function(socket){
-  console.log("You connected");
-  console.log(maze);
   pplConnected++;
   socket.emit('init', maze);
   socket.emit('replicate', [x, y, src, coordX, coordY, pplConnected]);
