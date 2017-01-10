@@ -143,10 +143,10 @@ function timer() {
     newTime = new Date().getTime();
     realMinutes = (newTime - start) / 60000;
     realTime--;
+    minutes = 1;
     // makes sure seconds is at least one when decrementing and sets stop back to false
     if (seconds >= 1) {
       seconds--;
-      minutes = 1;
     }
     // makes sure seconds gets set back to 59 after a minute has passed
     else if (seconds === "00" && minutesPassed === 0) {
