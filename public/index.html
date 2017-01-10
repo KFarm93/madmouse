@@ -6,13 +6,14 @@
     <script src="/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" type="text/css" href="flipclock.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   </head>
   <body ng-app="madmouse" ng-controller="MainController" ng-keydown="key($event)">
     <canvas id="canvas" width="700" height="700"></canvas>
-    <p id="titleHeader">MadMouse</p>
+    <p id="titleHeader">MadMouse <i class="fa fa-volume-up" id="volume" ng-click="volumeChange()" aria-hidden="true"></i></p>
+
     <p id="timer">{{minutes}}:{{seconds}}</p>
     <!-- <div class="timer"></div> -->
     <!-- <button class="startButton" type="sumbit" ng-click="startTimer()" ng-show="ready">Start!</button> -->
@@ -34,6 +35,5 @@
     </div>
   </body>
   <script src="jquery-3.1.1.js"></script>
-  <script src="flipclock.min.js"></script>
   <script src="frontend.js"></script>
 </html>

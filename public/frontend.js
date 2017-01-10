@@ -13,6 +13,7 @@ coordx = 0;
 var isCounting = false;
 var maze;
 var pplConnected;
+volume = "on";
 
 
 
@@ -168,8 +169,19 @@ socket.on('init', function(data) {
 angularApp.controller("MainController", function($scope) {
   $scope.isCounting = true;
   $scope.ready = true;
-  // $scope.delay = false;
   $scope.timeup = false;
+  $scope.volumeChange = function() {
+    if (volume === "on") {
+      $('#volume').removeClass("fa-volume-up");
+      $('#volume').addClass("fa-volume-off");
+      volume = "off";
+    }
+    else if (volume === "off") {
+      $('#volume').removeClass("fa-volume-off");
+      $('#volume').addClass("fa-volume-up");
+      volume = "on";
+    }
+  };
   socket.on('replicate', function(data) {
     $('#mouse').offset({ top: data[1], left: data[0] });
     $('#mouse').attr('src', data[2]);
@@ -243,7 +255,12 @@ angularApp.controller("MainController", function($scope) {
         // socket.emit('moveUp', [coordx, coordy]);
           // if (maze[coordy][coordx].up === false) {
             socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
-            shock.play();
+            if (volume === "on") {
+              shock.play();
+            }
+            else {
+              // don't play sound
+            }
           // }
           // else {
           //   // blocked
@@ -255,7 +272,12 @@ angularApp.controller("MainController", function($scope) {
           // socket.emit('moveRight', [coordx, coordy]);
           // if (maze[coordy][coordx].right === false) {
             socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
-            shock.play();
+            if (volume === "on") {
+              shock.play();
+            }
+            else {
+              // don't play sound
+            }
           // }
           // else {
           //   // blocked
@@ -266,7 +288,12 @@ angularApp.controller("MainController", function($scope) {
           // socket.emit('moveDown', [coordx, coordy]);
           // if (maze[coordy][coordx].down === false) {
             socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
-            shock.play();
+            if (volume === "on") {
+              shock.play();
+            }
+            else {
+              // don't play sound
+            }
           // }
           // else {
           //   // blocked
@@ -277,7 +304,12 @@ angularApp.controller("MainController", function($scope) {
           // socket.emit('moveLeft', [coordx, coordy]);
           // if (maze[coordy][coordx].left === false) {
             socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
-            shock.play();
+            if (volume === "on") {
+              shock.play();
+            }
+            else {
+              // don't play sound
+            }
           // }
           // else {
           //   // blocked

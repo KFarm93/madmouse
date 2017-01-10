@@ -18,6 +18,12 @@ body {
   margin-bottom: 25px;
 }
 
+#volume {
+
+  margin-left: 15%;
+  font-size: .5em;
+}
+
 
 #dpad {
   margin-bottom: 75px;
