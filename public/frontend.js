@@ -352,6 +352,7 @@ angularApp.controller("MainController", function($scope) {
      $scope.seconds = data[1];
      console.log("seconds: ", data[1]);
      $scope.playersConnected = data[2];
+     console.log("playersConnected: ", data[2]);
      $scope.$apply();
    });
  });
