@@ -194,6 +194,7 @@ angularApp.controller("MainController", function($scope) {
         socket.emit('winEvent');
       }, 500);
     }
+    $scope.$apply();
   });
 
   socket.on('newGame', function(data) {
@@ -350,6 +351,7 @@ angularApp.controller("MainController", function($scope) {
      console.log("minutes: ", data[0]);
      $scope.seconds = data[1];
      console.log("seconds: ", data[1]);
+     $scope.playersConnected = data[2];
      $scope.$apply();
    });
  });

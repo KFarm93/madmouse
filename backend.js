@@ -191,7 +191,7 @@ function timer() {
       }, 5000);
     }
     if (isCounting === true) {
-      io.emit('currentTime', [minutes, seconds]);
+      io.emit('currentTime', [minutes, seconds, playersConnected]);
     }
     else if (isCounting === false) {
       // pass
