@@ -146,10 +146,12 @@ function timer() {
     // makes sure seconds is at least one when decrementing and sets stop back to false
     if (seconds >= 1) {
       seconds--;
+      minutes = 1;
     }
     // makes sure seconds gets set back to 59 after a minute has passed
     else if (seconds === "00" && minutesPassed === 0) {
       seconds = 59;
+      minutes = 0;
       minutesPassed++;
     }
 
@@ -165,13 +167,13 @@ function timer() {
     }
 
     // checks if there is at least 1 minute
-    if (realMinutes <= 1.1) {
-      minutes = 1;
-    }
+    // if (realMinutes <= 1.1) {
+    //   minutes = 1;
+    // }
     // checks if there is less than 1 minute remaining
-    else if (realMinutes > 1.1) {
-      minutes = 0;
-    }
+    // else if (realMinutes > 1.1) {
+    //   minutes = 0;
+    // }
     // checks if time is up
     if (newTime - start >= 120000 && newTime - start < 120999) {
       console.log("Time's up!");
