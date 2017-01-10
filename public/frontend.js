@@ -13,7 +13,7 @@ coordx = 0;
 var isCounting = false;
 var maze;
 var playersConnected;
-volume = "on";
+var volume;
 
 
 
@@ -197,6 +197,7 @@ socket.on('init', function(data) {
 
 
 angularApp.controller("MainController", function($scope) {
+  volume = "on";
   $scope.isCounting = true;
   $scope.ready = true;
   $scope.timeup = false;
