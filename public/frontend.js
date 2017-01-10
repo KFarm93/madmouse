@@ -12,7 +12,7 @@ coordy = 0;
 coordx = 0;
 var isCounting = false;
 var maze;
-var pplConnected;
+var playersConnected;
 volume = "on";
 
 
@@ -187,7 +187,7 @@ angularApp.controller("MainController", function($scope) {
     $('#mouse').attr('src', data[2]);
     coordx = data[3];
     coordy = data[4];
-    $scope.pplConnected = data[5];
+    $scope.playersConnected = data[5];
     // Check win
     if (coordx === 13 && coordy === 12) {
       setTimeout(function() {
@@ -195,7 +195,6 @@ angularApp.controller("MainController", function($scope) {
       }, 500);
     }
   });
-  // console.log($scope.pplConnected);
 
   socket.on('newGame', function(data) {
     $scope.resetShow = false;

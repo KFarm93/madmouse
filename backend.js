@@ -17,7 +17,7 @@ var stop = false;
 var seconds = 60;
 var minutesPassed = 0;
 var maze;
-var pplConnected = 0;
+var playersConnected = 0;
 var num = 0;
 
 app.use(express.static('public'));
@@ -167,14 +167,6 @@ function timer() {
       seconds = "0" + seconds;
     }
 
-    // checks if there is at least 1 minute
-    // if (realMinutes <= 1.1) {
-    //   minutes = 1;
-    // }
-    // checks if there is less than 1 minute remaining
-    // else if (realMinutes > 1.1) {
-    //   minutes = 0;
-    // }
     // checks if time is up
     if (newTime - start >= 120000 && newTime - start < 120999) {
       console.log("Time's up!");
@@ -205,14 +197,12 @@ function timer() {
       // pass
     }
 
-    // updates timer on frontend
-
 }
 
 io.on('connection', function(socket){
-  pplConnected++;
+  playersConnected++;
   socket.emit('init', maze);
-  socket.emit('replicate', [x, y, src, coordX, coordY, pplConnected]);
+  socket.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
 
   socket.on('keypress', function(data) {
     if (data[0] === 'top') {
@@ -243,7 +233,7 @@ io.on('connection', function(socket){
         src = 'images/mouse_right.png';
       }
     }
-    io.emit('replicate', [x, y, src, coordX, coordY, pplConnected]);
+    io.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
   });
 
   socket.on('reset', function() {
@@ -268,7 +258,7 @@ io.on('connection', function(socket){
     io.emit('win');
   });
   socket.on('disconnect', function() {
-    pplConnected--;
+    playersConnected--;
   });
 });
 
