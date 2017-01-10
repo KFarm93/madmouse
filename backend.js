@@ -12,7 +12,7 @@ var runTimer = setInterval(timer, 1000);
 var realTime = 120;
 var start = new Date().getTime();
 var newTime;
-var minutes = 2;
+var minutes = 1;
 var stop = false;
 var seconds = 60;
 var minutesPassed = 0;
@@ -143,7 +143,9 @@ function timer() {
     newTime = new Date().getTime();
     realMinutes = (newTime - start) / 60000;
     realTime--;
-    minutes = 1;
+    if (newTime - start >= 60500) {
+      minutes = 0;
+    }
     // makes sure seconds is at least one when decrementing and sets stop back to false
     if (seconds >= 1) {
       seconds--;
@@ -151,7 +153,6 @@ function timer() {
     // makes sure seconds gets set back to 59 after a minute has passed
     else if (seconds === "00" && minutesPassed === 0) {
       seconds = 59;
-      minutes = 0;
       minutesPassed++;
     }
 
@@ -189,7 +190,7 @@ function timer() {
         seconds = 60;
         stop = false;
         minutesPassed = 0;
-        minutes = 2;
+        minutes = 1;
         isCounting = true;
         maze = whichMaze();
         start = new Date().getTime();
@@ -255,7 +256,7 @@ io.on('connection', function(socket){
     seconds = 60;
     stop = false;
     minutesPassed = 0;
-    minutes = 2;
+    minutes = 1;
     isCounting = true;
     maze = whichMaze();
     start = new Date().getTime();
