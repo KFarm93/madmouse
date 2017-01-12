@@ -38,7 +38,6 @@ function whichMaze() {
   // list-based maze selection
   num++;
   if (num === 1) {
-    console.log("Provided maze1");
     return [ // Row A
                   [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: true, down: true, left: false, name: 'A2'}, {up: true, right: false, down: false, left: true, name: 'A3'}, {up: true, right: true, down: false, left: false, name: 'A4'}, {up: true, right: false, down: false, left: true, name: 'A5'}, {up: true, right: false, down: true, left: false, name: 'A6'}, {up: true, right: false, down: true, left: false, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: true, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: true, name: 'A10'}, {up: true, right: false, down: true, left: false, name: 'A11'}, {up: true, right: false, down: true, left: false, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: true, left: false, name: 'A14'}],
                   // Row B
@@ -70,7 +69,6 @@ function whichMaze() {
     ];
   }
   else if (num === 2) {
-    console.log("Provided maze2");
     return [ // Row A
                   [{up: true, right: false, down: true, left: true, name: 'A1'}, {up: true, right: false, down: false, left: false, name: 'A2'}, {up: true, right: true, down: false, left: false, name: 'A3'}, {up: true, right: false, down: false, left: true, name: 'A4'}, {up: true, right: false, down: true, left: false, name: 'A5'}, {up: true, right: false, down: true, left: false, name: 'A6'}, {up: true, right: false, down: true, left: false, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: false, down: true, left: false, name: 'A9'}, {up: true, right: false, down: true, left: false, name: 'A10'}, {up: true, right: false, down: true, left: false, name: 'A11'}, {up: true, right: false, down: false, left: false, name: 'A12'}, {up: true, right: true, down: false, left: false, name: 'A13'}, {up: true, right: true, down: false, left: true, name: 'A14'}],
                   // Row B
@@ -102,7 +100,6 @@ function whichMaze() {
                 ];
   }
   else if (num === 3) {
-    console.log("Provided maze3");
     return [ // Row A
                   [{up: true, right: false, down: false, left: true, name: 'A1'}, {up: true, right: false, down: true, left: false, name: 'A2'}, {up: true, right: false, down: true, left: false, name: 'A3'}, {up: true, right: false, down: true, left: false, name: 'A4'}, {up: true, right: false, down: true, left: false, name: 'A5'}, {up: true, right: true, down: false, left: false, name: 'A6'}, {up: true, right: false, down: true, left: true, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: false, down: false, left: false, name: 'A9'}, {up: true, right: false, down: false, left: false, name: 'A10'}, {up: true, right: true, down: true, left: false, name: 'A11'}, {up: true, right: false, down: false, left: true, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: false, left: false, name: 'A14'}],
                   // Row B
@@ -134,7 +131,6 @@ function whichMaze() {
                 ];
   }
   else if (num === 4) {
-    console.log("Provided maze4");
     num = 0;
     return [ // Row A
                   [{up: true, right: false, down: true, left: true, name: 'A1'}, {up: true, right: false, down: true, left: false, name: 'A2'}, {up: true, right: false, down: true, left: false, name: 'A3'}, {up: true, right: false, down: false, left: false, name: 'A4'}, {up: true, right: false, down: true, left: false, name: 'A5'}, {up: true, right: true, down: false, left: false, name: 'A6'}, {up: true, right: false, down: false, left: true, name: 'A7'}, {up: true, right: false, down: true, left: false, name: 'A8'}, {up: true, right: false, down: true, left: false, name: 'A9'}, {up: true, right: false, down: true, left: false, name: 'A10'}, {up: true, right: true, down: false, left: false, name: 'A11'}, {up: true, right: false, down: false, left: true, name: 'A12'}, {up: true, right: false, down: true, left: false, name: 'A13'}, {up: true, right: true, down: false, left: false, name: 'A14'}],
@@ -191,7 +187,6 @@ function timer() {
     else if (seconds === "00" && minutesPassed > 0) {
       stop = true;
       seconds = "00";
-      console.log("newTime - start: ", newTime - start);
     }
 
     // adds '0' before seconds to read as '09', '08', etc.
@@ -201,7 +196,6 @@ function timer() {
 
     // checks if time is up
     if (newTime - start >= 120000 && newTime - start < 120999) {
-      console.log("Time's up!");
       io.emit('timeUp');
       setTimeout(function(){
         coordX = 0;
@@ -218,7 +212,6 @@ function timer() {
         isCounting = true;
         maze = whichMaze();
         start = new Date().getTime();
-        console.log("start: ", start);
         io.emit('newGame', maze);
       }, 5000);
     }
@@ -243,55 +236,119 @@ io.on('connection', function(socket){
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_up.png';
+        if (coordX === 13 && coordY === 12) {
+          isCounting = false;
+          io.emit('winEvent');
+          setTimeout(function(){
+            coordX = 0;
+            coordY = 0;
+            x = 20;
+            y = 20;
+
+            // realTime is reset here:
+            realTime = 120;
+            seconds = 60;
+            stop = false;
+            minutesPassed = 0;
+            minutes = 1;
+            isCounting = true;
+            maze = whichMaze();
+            start = new Date().getTime();
+            io.emit('newGame', maze);
+          }, 5000);
+        }
       }
       else if (data[1] === 'down' && maze[coordY][coordX].down === false) {
         y += 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_down.png';
+        if (coordX === 13 && coordY === 12) {
+          isCounting = false;
+          io.emit('winEvent');
+          setTimeout(function(){
+            coordX = 0;
+            coordY = 0;
+            x = 20;
+            y = 20;
+
+            // realTime is reset here:
+            realTime = 120;
+            seconds = 60;
+            stop = false;
+            minutesPassed = 0;
+            minutes = 1;
+            isCounting = true;
+            maze = whichMaze();
+            start = new Date().getTime();
+            io.emit('newGame', maze);
+        }, 5000);
       }
     }
-    if (data[0] === 'left') {
+  }
+    else if (data[0] === 'left') {
       if (data[1] === 'left' && maze[coordY][coordX].left === false) {
         x -= 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_left.png';
+        if (coordX === 13 && coordY === 12) {
+          isCounting = false;
+          io.emit('winEvent');
+          setTimeout(function(){
+            coordX = 0;
+            coordY = 0;
+            x = 20;
+            y = 20;
+
+            // realTime is reset here:
+            realTime = 120;
+            seconds = 60;
+            stop = false;
+            minutesPassed = 0;
+            minutes = 1;
+            isCounting = true;
+            maze = whichMaze();
+            start = new Date().getTime();
+            io.emit('newGame', maze);
+          }, 5000);
+        }
       }
       else if (data[1] === 'right' && maze[coordY][coordX].right === false) {
         x += 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_right.png';
+        if (coordX === 13 && coordY === 12) {
+          isCounting = false;
+          io.emit('winEvent');
+          setTimeout(function(){
+            coordX = 0;
+            coordY = 0;
+            x = 20;
+            y = 20;
+
+            // realTime is reset here:
+            realTime = 120;
+            seconds = 60;
+            stop = false;
+            minutesPassed = 0;
+            minutes = 1;
+            isCounting = true;
+            maze = whichMaze();
+            start = new Date().getTime();
+            io.emit('newGame', maze);
+          }, 5000);
+        }
       }
     }
-    io.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
-  });
+  io.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
+});
 
-  socket.on('reset', function() {
-    coordX = 0;
-    coordY = 0;
-    x = 20;
-    y = 20;
-    // realTime is reset here:
-    realTime = 120;
-    seconds = 60;
-    stop = false;
-    minutesPassed = 0;
-    minutes = 1;
-    isCounting = true;
-    maze = whichMaze();
-    start = new Date().getTime();
-    console.log("start: ", start);
-    io.emit('newGame', maze);
-  });
-  socket.on('winEvent', function() {
-    isCounting = false;
-    io.emit('win');
-  });
   socket.on('disconnect', function() {
     playersConnected--;
   });
+
 });
 
 http.listen(5000, function() {
