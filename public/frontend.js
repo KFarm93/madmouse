@@ -18,6 +18,7 @@ var volume;
 
 // audio files
 var shock = new Audio("ESPARK1.wav");
+var win = new Audio("win.wav");
 
 
 // on dom ready:
@@ -196,6 +197,9 @@ angularApp.controller("MainController", function($scope) {
      $scope.$apply();
    });
    socket.on('winEvent', function() {
+     if (volume === "on") {
+       win.play();
+     }
      $scope.isCounting = false;
      $scope.victory = true;
      $scope.resetShow = true;
