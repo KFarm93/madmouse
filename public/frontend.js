@@ -17,7 +17,7 @@ var volume;
 
 
 // audio files
-var shock = new Audio("ESPARK1.wav");
+var move = new Audio("move.wav");
 var win = new Audio("win.wav");
 
 
@@ -140,7 +140,7 @@ angularApp.controller("MainController", function($scope) {
       if ($event.keyCode == 38 || $event.keyCode == 87) {
         socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
         if (volume === "on") {
-          shock.play();
+          move.play();
         }
         else {
           // don't play sound
@@ -150,7 +150,7 @@ angularApp.controller("MainController", function($scope) {
         $event.preventDefault();
         socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
         if (volume === "on") {
-          shock.play();
+          move.play();
         }
         else {
         // don't play sound
@@ -160,7 +160,7 @@ angularApp.controller("MainController", function($scope) {
         $event.preventDefault();
         socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
         if (volume === "on") {
-          shock.play();
+          move.play();
         }
         else {
           // don't play sound
@@ -170,7 +170,7 @@ angularApp.controller("MainController", function($scope) {
         $event.preventDefault();
         socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
         if (volume === "on") {
-          shock.play();
+          move.play();
         }
         else {
           // don't play sound
