@@ -19,6 +19,7 @@ var minutesPassed = 0;
 var maze;
 var playersConnected = 0;
 var num = 0;
+var blah = true;
 
 app.use(express.static('public'));
 io.emit('start');
