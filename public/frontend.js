@@ -137,6 +137,7 @@ angularApp.controller("MainController", function($scope) {
   $scope.key = function($event) {
     $event.preventDefault();
     if ($scope.isCounting === true) {
+      // move up
       if ($event.keyCode == 38 || $event.keyCode == 87) {
         socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
         if (volume === "on") {
@@ -148,6 +149,7 @@ angularApp.controller("MainController", function($scope) {
       }
       else if ($event.keyCode == 39 || $event.keyCode == 68) {
         $event.preventDefault();
+        // move right
         socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
         if (volume === "on") {
           move.play();
@@ -158,6 +160,7 @@ angularApp.controller("MainController", function($scope) {
       }
       else if ($event.keyCode == 40 || $event.keyCode == 83) {
         $event.preventDefault();
+        // move down
         socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
         if (volume === "on") {
           move.play();
@@ -168,6 +171,7 @@ angularApp.controller("MainController", function($scope) {
       }
       else if ($event.keyCode == 37 || $event.keyCode == 65) {
         $event.preventDefault();
+        // move left
         socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
         if (volume === "on") {
           move.play();
@@ -175,6 +179,53 @@ angularApp.controller("MainController", function($scope) {
         else {
           // don't play sound
         }
+      }
+    }
+  };
+
+  $scope.upArrow = function() {
+    if ($scope.isCounting === true) {
+      socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
+      if (volume === "on") {
+        move.play();
+      }
+      else {
+        // don't play sound
+      }
+    }
+  };
+  $scope.rightArrow = function() {
+    if ($scope.isCounting === true) {
+      socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
+      if (volume === "on") {
+        move.play();
+      }
+      else {
+      // don't play sound
+      }
+    }
+  };
+  $scope.downArrow = function() {
+    if ($scope.isCounting === true) {
+      socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
+      if (volume === "on") {
+        move.play();
+      }
+      else {
+        // don't play sound
+      }
+    }
+  };
+  $scope.leftArrow = function() {
+    console.log("left arrow clicked");
+    if ($scope.isCounting === true) {
+      // move left
+      socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);
+      if (volume === "on") {
+        move.play();
+      }
+      else {
+        // don't play sound
       }
     }
   };
