@@ -15,17 +15,11 @@ body {
   font-family: 'Bangers', cursive;
   margin: 0;
   /*margin-left: 800px;*/
-  margin-bottom: 25px;
 }
 
 #volume {
   margin-left: 15%;
   font-size: .5em;
-}
-
-
-#dpad {
-  margin-bottom: 75px;
 }
 
 #canvas {
@@ -60,7 +54,7 @@ body {
   font-family: 'Bangers', cursive;
   margin: 0;
   /*margin-left: 800px;*/
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   /*background-color: white;*/
   width: 150px;
 }
