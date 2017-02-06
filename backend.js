@@ -262,12 +262,15 @@ io.on('connection', function(socket){
   socket.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
 
   socket.on('keypress', function(data) {
+    // what happens when a user pushes up arrow or 'W' key
     if (data[0] === 'top') {
       if (data[1] === 'up' && maze[coordY][coordX].up === false) {
         y -= 50;
         coordY += data[3];
         coordX += data[4];
         src = 'images/mouse_up.png';
+
+        // win event check:
         if (coordX === 13 && coordY === 12) {
           isCounting = false;
           io.emit('winEvent');
@@ -277,7 +280,7 @@ io.on('connection', function(socket){
             x = 20;
             y = 20;
 
-            // realTime is reset here:
+            // clock is reset here:
             realTime = 120;
             seconds = 60;
             stop = false;
