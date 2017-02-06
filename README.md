@@ -92,5 +92,5 @@ socket.on('keypress', function(data) {
 
 Screen shot:
 
-![](images/mmscreenshot1.png)
-![](images/mmscreenshot2.png)
+![](public/images/mmscreenshot1.png)
+![](public/images/mmscreenshot2.png)
