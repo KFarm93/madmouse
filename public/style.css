@@ -161,7 +161,7 @@ body {
   margin: 0;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1000px) {
     .arrowButtons {
         display: none;
     }
@@ -182,7 +182,7 @@ body {
     }
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 999px) {
   #messageForm {
     top: 1300px;
     left: 50px;
