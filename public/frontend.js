@@ -180,7 +180,7 @@ angularApp.controller("MainController", function($scope) {
     // $event.preventDefault();
     if ($scope.isCounting === true && loggedIn === true) {
       // move up
-      if ($event.keyCode == 38 || $event.keyCode == 87) {
+      if ($event.keyCode == 38) {
         socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
         if (volume === "on") {
           move.play();
@@ -189,7 +189,7 @@ angularApp.controller("MainController", function($scope) {
           // don't play sound
         }
       }
-      else if ($event.keyCode == 39 || $event.keyCode == 68) {
+      else if ($event.keyCode == 39) {
         $event.preventDefault();
         // move right
         socket.emit('keypress', ['left', 'right', $('#mouse').offset(), 0, 1]);
@@ -200,7 +200,7 @@ angularApp.controller("MainController", function($scope) {
         // don't play sound
         }
       }
-      else if ($event.keyCode == 40 || $event.keyCode == 83) {
+      else if ($event.keyCode == 40) {
         $event.preventDefault();
         // move down
         socket.emit('keypress', ['top', 'down', $('#mouse').offset(), 1, 0]);
@@ -211,7 +211,7 @@ angularApp.controller("MainController", function($scope) {
           // don't play sound
         }
       }
-      else if ($event.keyCode == 37 || $event.keyCode == 65) {
+      else if ($event.keyCode == 37) {
         $event.preventDefault();
         // move left
         socket.emit('keypress', ['left', 'left', $('#mouse').offset(), 0, -1]);

@@ -7,8 +7,6 @@ body {
 #login {
   z-index: 1;
   position: fixed;
-  top: 30%;
-  left: 30%;
   border: 3px solid black;
 }
 
@@ -180,22 +178,35 @@ body {
     #messageInput {
       width: 450px;
     }
+
+    #login {
+      top: 300px;
+      left: 400px;
+    }
 }
 
 @media screen and (max-width: 999px) {
   #messageForm {
-    top: 1300px;
-    left: 50px;
-    width: 500px;
+    top: 1400px;
+    width: 100%;
   }
   #messageEnter {
     top: 1300px;
-    width: 50px;
+    width: 100px;
   }
   #messageDiv {
-    top: 1100px;
+    top: 1200px;
     left: 0px;
     width: 100%;
+  }
+
+  #messageInput {
+    width: 800px;
+  }
+
+  #login {
+    top: 400px;
+    left: 200px;
   }
 }
 
