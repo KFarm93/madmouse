@@ -260,7 +260,7 @@ io.on('connection', function(socket){
   playersConnected++;
   socket.emit('init', maze);
   socket.emit('replicate', [x, y, src, coordX, coordY, playersConnected]);
-
+  socket.emit('login');
   socket.on('keypress', function(data) {
     // what happens when a user pushes up arrow or 'W' key
     if (data[0] === 'top') {
@@ -383,6 +383,10 @@ io.on('connection', function(socket){
   socket.on('disconnect', function() {
     // reduces players connected count
     playersConnected--;
+  });
+
+  socket.on('chat message', function(data) {
+    io.emit('recieved message', data);
   });
 
 });

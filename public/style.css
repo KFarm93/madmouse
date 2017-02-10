@@ -4,6 +4,30 @@ body {
   background-repeat: no-repeat;
 }
 
+#login {
+  z-index: 1;
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  border: 3px solid black;
+}
+
+#login input {
+  width: 500px;
+  height: 150px;
+  font-size: 3.5em;
+}
+
+#login button {
+  float: right;
+  height: 150px;
+  width: 150px;
+  font-size: 3.5em;
+  background-color: aqua;
+  border-left: 3px solid black;
+  color: black;
+}
+
 .boardDiv {
   display: block;
   float: left;
@@ -135,4 +159,73 @@ body {
 
 .connected p {
   margin: 0;
+}
+
+@media screen and (min-width: 800px) {
+    .arrowButtons {
+        display: none;
+    }
+    #messageForm {
+      top: 640px;
+      left: 735px;
+      width: 800px;
+    }
+
+    #messageDiv {
+      top: 430px;
+      left: 735px;
+      width: 500px;
+    }
+
+    #messageInput {
+      width: 450px;
+    }
+}
+
+@media screen and (max-width: 799px) {
+  #messageForm {
+    top: 1300px;
+    left: 50px;
+    width: 500px;
+  }
+  #messageEnter {
+    top: 1300px;
+    width: 50px;
+  }
+  #messageDiv {
+    top: 1100px;
+    left: 0px;
+    width: 100%;
+  }
+}
+
+#messageDiv {
+  position: fixed;
+  height: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: white;
+  overflow: auto;
+}
+
+#messageForm {
+  position: fixed;
+}
+
+#messageEnter {
+  border: 3px solid black;
+  background-color: aqua;
+  height: 40px;
+  color: black;
+}
+
+#messageInput {
+  border: 1px solid black;
+  height: 40px;
+}
+
+.names {
+  color: blue;
+  margin-right: 2%;
+  margin-left: 0;
 }

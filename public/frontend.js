@@ -14,6 +14,8 @@ var isCounting = false;
 var maze;
 var playersConnected;
 var volume;
+var loggedIn = false;
+var username;
 
 
 // audio files
@@ -23,8 +25,7 @@ var win = new Audio("win.wav");
 
 // on dom ready:
 $(document).ready(function() {
-  $('body').append(cheese);
-  $('body').append(mouse);
+
 });
 
 
@@ -61,6 +62,29 @@ socket.on('init', function(data) {
     drawHorizontal(maze, i);
     drawVertical(maze, i);
   }
+  console.log("loggedIn is: ", loggedIn);
+  $('body').append(cheese);
+  $('body').append(mouse);
+  if (loggedIn === false) {
+    $('div').css('filter', 'blur(3px)');
+    $('#mouse').css('filter', 'blur(3px)');
+    $('#cheese').css('filter', 'blur(3px)');
+    $('#login').submit(function(event) {
+      username = $('#loginText').val();
+      if (username === '') {
+        alert("Please enter a nickname");
+        event.preventDefault();
+      }
+      else {
+        $('#login').toggle();
+        $('div').css('filter', 'none');
+        $('#mouse').css('filter', 'none');
+        $('#cheese').css('filter', 'none');
+        loggedIn = true;
+        event.preventDefault();
+      }
+    });
+  }
 });
 
 
@@ -68,6 +92,24 @@ socket.on('init', function(data) {
 
 
 angularApp.controller("MainController", function($scope) {
+  $('#messageForm').submit(function(){
+    console.log("submitting");
+    socket.emit('chat message', [$('#messageForm input').val(), username]);
+    $('#messageForm input').val('');
+    return false;
+  });
+  socket.on('recieved message', function(data) {
+    console.log("appending");
+    $('#messageDiv').append("<span class='names'>" + data[1] + ": </span>" + data[0] + "<br>");
+    // $('#messages').append($('<p class="names">').text(username + ':'));
+    // $('#messages').append($('<p>').text(msg));
+    var div = $("#messageDiv");
+    div.scrollTop(div.prop('scrollHeight'));
+  });
+
+
+
+
   volume = "on";
   $scope.isCounting = true;
   $scope.ready = true;
@@ -135,8 +177,8 @@ angularApp.controller("MainController", function($scope) {
     $scope.$apply();
   });
   $scope.key = function($event) {
-    $event.preventDefault();
-    if ($scope.isCounting === true) {
+    // $event.preventDefault();
+    if ($scope.isCounting === true && loggedIn === true) {
       // move up
       if ($event.keyCode == 38 || $event.keyCode == 87) {
         socket.emit('keypress', ['top', 'up', $('#mouse').offset(), -1, 0]);
@@ -229,7 +271,9 @@ angularApp.controller("MainController", function($scope) {
       }
     }
   };
+   socket.on('login', function() {
 
+   });
    socket.on('start', function() {
      $scope.ready = false;
      $scope.isCounting = true;
