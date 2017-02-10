@@ -189,6 +189,7 @@ body {
   #messageForm {
     top: 1400px;
     width: 100%;
+    left: 10px;
   }
   #messageEnter {
     top: 1300px;
@@ -201,7 +202,7 @@ body {
   }
 
   #messageInput {
-    width: 800px;
+    width: 700px;
   }
 
   #login {
