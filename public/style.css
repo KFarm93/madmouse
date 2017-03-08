@@ -156,7 +156,7 @@ body {
   background-color: white;
   border: 1px solid black;
   padding: 10px 125px;
-  /*margin-left: 800px;*/
+  /*margin-top: 280px;*/
   font-size: 2em;
   font-family: 'Bangers', cursive;
 }
@@ -171,22 +171,24 @@ body {
     }
 
     #messageForm {
-      top: 600px;
-      left: 735px;
+      margin-top: 240px;
+      float: left;
       width: 800px;
       font-family: 'Bangers', cursive;
       font-size: 1.2em;
     }
 
     #messageEnter {
+      display: block;
       height: 52px;
       width: 75px;
       font-size: 1.5em;
     }
 
     #messageDiv {
-      top: 430px;
-      left: 735px;
+      display: block;
+      margin-top: 90px;
+      float: left;
       width: 650px;
       height: 150px;
       font-family: 'Bangers', cursive;
@@ -194,7 +196,9 @@ body {
     }
 
     #messageInput {
-      width: 450px;
+      display: block;
+      float: left;
+      width: 575px;
       height: 50px;
     }
 
@@ -215,7 +219,7 @@ body {
 
   #messageEnter {
     top: 1300px;
-    width: 100px;
+    width: 15%;
     height: 28px;
   }
 
@@ -227,7 +231,7 @@ body {
   }
 
   #messageInput {
-    width: 700px;
+    width: 85%;
   }
 
   #login {
@@ -261,7 +265,8 @@ body {
 }
 
 .names {
-  color: blue;
+  color: black;
+  text-decoration: underline;
   margin-right: 2%;
   margin-left: 0;
 }
