@@ -1,4 +1,4 @@
-var angularApp = angular.module('madmouse', []);
+var angularApp = angular.module('madmouse', ['ngTouch']);
 var socket = io();
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
