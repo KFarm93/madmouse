@@ -65,8 +65,8 @@ function $TouchProvider($provide, $compileProvider) {
    * The default is `false`.
    *
    */
-  var ngClickOverrideEnabled = false;
-  var ngClickDirectiveAdded = false;
+  var ngClickOverrideEnabled = true;
+  var ngClickDirectiveAdded = true;
   // eslint-disable-next-line no-invalid-this
   this.ngClickOverrideEnabled = function(enabled) {
     if (angular.isDefined(enabled)) {
